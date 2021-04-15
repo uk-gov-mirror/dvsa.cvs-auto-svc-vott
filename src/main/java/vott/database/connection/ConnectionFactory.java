@@ -10,13 +10,13 @@ import java.sql.SQLException;
 @RequiredArgsConstructor
 public class ConnectionFactory {
 
-    private final VottConfiguration configuration;
+    private final DatabaseConfiguration configuration;
 
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(
-            configuration.getDatabaseProperties().toJdbcUrl(),
-            configuration.getDatabaseProperties().getUsername(),
-            configuration.getDatabaseProperties().getPassword()
+            configuration.toJdbcUrl(),
+            configuration.getUsername(),
+            configuration.getPassword()
         );
     }
 }
