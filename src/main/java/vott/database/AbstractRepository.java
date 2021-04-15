@@ -78,6 +78,24 @@ public abstract class AbstractRepository<T> {
         }
     }
 
+    public List<T> select(String query) {
+        try (Connection connection = connectionFactory.getConnection()) {
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            List<T> entities = new ArrayList<>();
+
+            while (rs.next()) {
+                entities.add(mapToEntity(rs));
+            }
+
+            return entities;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(int primaryKey) {
         try (Connection connection = connectionFactory.getConnection()) {
             PreparedStatement preparedStatement = connection.prepareStatement(
