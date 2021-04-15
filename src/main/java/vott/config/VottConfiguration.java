@@ -9,6 +9,8 @@ public class VottConfiguration {
     private DatabaseProperties databaseProperties;
     @SerializedName("oAuthProperties")
     private OAuthProperties oAuthProperties;
+    @SerializedName("apiProperties")
+    private ApiProperties apiProperties;
     @SerializedName("apiKeys")
     private ApiKeys apiKeys;
 }
