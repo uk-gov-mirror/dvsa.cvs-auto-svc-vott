@@ -3,8 +3,8 @@ package vott.database;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import vott.config.ConfigurationProvider;
 import vott.database.connection.ConnectionFactory;
-import vott.database.connection.DatabaseConfiguration;
 import vott.models.dao.TestDefect;
 
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class TestDefectRepositoryTest {
     @Before
     public void setUp() {
         ConnectionFactory connectionFactory = new ConnectionFactory(
-                DatabaseConfiguration.provide()
+                ConfigurationProvider.local()
         );
 
         testDefectRepository = new TestDefectRepository(connectionFactory);

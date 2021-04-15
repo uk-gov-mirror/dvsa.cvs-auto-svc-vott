@@ -3,8 +3,8 @@ package vott.database;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import vott.config.ConfigurationProvider;
 import vott.database.connection.ConnectionFactory;
-import vott.database.connection.DatabaseConfiguration;
 import vott.models.dao.TestResult;
 import vott.models.dao.TestType;
 
@@ -24,7 +24,7 @@ public class TestResultRepositoryTest {
     @Before
     public void setUp() {
         ConnectionFactory connectionFactory = new ConnectionFactory(
-                DatabaseConfiguration.provide()
+                ConfigurationProvider.local()
         );
 
         testResultRepository = new TestResultRepository(connectionFactory);

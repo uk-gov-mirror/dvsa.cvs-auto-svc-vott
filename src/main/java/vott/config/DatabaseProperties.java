@@ -19,4 +19,8 @@ public class DatabaseProperties {
     private String databaseName;
     @SerializedName("databaseClusterIdentifier")
     private String databaseClusterIdentifier;
+
+    public String toJdbcUrl() {
+        return "jdbc:" + engine + "://" + host + ":" + port + "/" + databaseName;
+    }
 }

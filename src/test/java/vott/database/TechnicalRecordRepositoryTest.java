@@ -3,8 +3,8 @@ package vott.database;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import vott.config.ConfigurationProvider;
 import vott.database.connection.ConnectionFactory;
-import vott.database.connection.DatabaseConfiguration;
 import vott.models.dao.TechnicalRecord;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class TechnicalRecordRepositoryTest {
     @Before
     public void setUp() {
         ConnectionFactory connectionFactory = new ConnectionFactory(
-                DatabaseConfiguration.provide()
+                ConfigurationProvider.local()
         );
 
         technicalRecordRepository = new TechnicalRecordRepository(connectionFactory);
