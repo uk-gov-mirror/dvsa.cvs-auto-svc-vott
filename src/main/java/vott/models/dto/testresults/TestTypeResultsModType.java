@@ -19,13 +19,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * Used only for LEC tests. p &#x3D; particulate trap, m &#x3D; modification or change of engine, g &#x3D; gas engine.
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
 public class TestTypeResultsModType {
   /**
    * Gets or Sets code

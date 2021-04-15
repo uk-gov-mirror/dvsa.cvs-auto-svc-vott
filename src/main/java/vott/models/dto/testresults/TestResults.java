@@ -13,13 +13,14 @@
 package vott.models.dto.testresults;
 
 import java.util.ArrayList;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * TestResults
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
 public class TestResults extends ArrayList<CompleteTestResults> {
 
   @Override

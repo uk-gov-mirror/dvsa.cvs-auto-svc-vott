@@ -14,13 +14,14 @@ package vott.models.dto.testresults;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * CustomDefect
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
 public class CustomDefect {
   @SerializedName("referenceNumber")
   private String referenceNumber = null;

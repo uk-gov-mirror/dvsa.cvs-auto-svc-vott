@@ -19,13 +19,14 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * Mandatory only for motorcycles. 2 &#x3D; MotorBikes over 200cc or with a sidecar, N &#x3D; Not Applicable, S &#x3D; Small PSV i.e less than or equal to 22 seats, 1 &#x3D; Motorbikes upto 200cc, T &#x3D; Trailer, L &#x3D; LARGE PSV (ie. greater than 23 seats), 3 &#x3D; 3 wheelers, V &#x3D; Heavy Goods Vehicle
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
 public class CompleteTestResultsVehicleClass {
   /**
    * Gets or Sets code

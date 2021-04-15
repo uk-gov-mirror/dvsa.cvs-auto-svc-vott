@@ -15,12 +15,13 @@ package vott.models.dto.techrecords;
 import com.google.gson.annotations.SerializedName;
 
 import java.math.BigDecimal;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * Used only for TRL
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
 public class AxleBrakeProperties {
   @SerializedName("brakeActuator")
   private BigDecimal brakeActuator = null;

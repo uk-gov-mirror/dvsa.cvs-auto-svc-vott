@@ -16,12 +16,13 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * Applicable only to ADR details. Returned only if query param \&quot;metadata\&quot; &#x3D; \&quot;true\&quot;, otherwise not returned
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
 public class Metadata {
   @SerializedName("makeAndChassisMakeFe")
   private List<String> makeAndChassisMakeFe = null;

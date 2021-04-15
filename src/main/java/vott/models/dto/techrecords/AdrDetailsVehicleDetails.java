@@ -15,13 +15,14 @@ package vott.models.dto.techrecords;
 import com.google.gson.annotations.SerializedName;
 
 import java.time.LocalDate;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * AdrDetailsVehicleDetails
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
 public class AdrDetailsVehicleDetails {
   @SerializedName("type")
   private String type = null;

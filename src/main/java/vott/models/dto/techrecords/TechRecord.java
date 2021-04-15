@@ -24,13 +24,14 @@ import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * TechRecord
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
 public class TechRecord {
   @SerializedName("recordCompleteness")
   private String recordCompleteness = null;

@@ -19,12 +19,13 @@ import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * Used for all vehicle types - PSV, HGV and TRL. o &#x3D; other, a &#x3D; articulated, m &#x3D; other, s &#x3D; single decker, d &#x3D; double decker, x &#x3D; other, p &#x3D; petrol/oil tanker, k &#x3D; skeletal, t &#x3D; tipper, b &#x3D; box, f &#x3D; flat, r &#x3D; refuse, s &#x3D; skip loader (for HGV and TRL), c &#x3D; refrigerated
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:30:43.231Z[GMT]")
 public class TechRecordBodyType {
   /**
    * Gets or Sets code

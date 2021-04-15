@@ -14,13 +14,14 @@ package vott.models.dto.enquiry;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * AxleSpacing
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T17:16:44.237Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T17:16:44.237Z[GMT]")
 public class AxleSpacing {
   @SerializedName("axles")
   private String axles = null;

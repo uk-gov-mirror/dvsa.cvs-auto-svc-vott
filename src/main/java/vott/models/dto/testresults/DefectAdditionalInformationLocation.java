@@ -20,13 +20,14 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
  * DefectAdditionalInformationLocation
  */
 
-@javax.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
+@Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T13:44:54.508Z[GMT]")
 public class DefectAdditionalInformationLocation {
   /**
    * Gets or Sets vertical
