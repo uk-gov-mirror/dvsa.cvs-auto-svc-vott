@@ -19,6 +19,7 @@
         <jackson.version>2.9.8</jackson.version>
         <jsonpath.version>2.4.0</jsonpath.version>
         <sl4j.version>1.7.7</sl4j.version>
+        <serenity.version>2.3.31</serenity.version>
     </properties>
 
     <dependencies>
@@ -93,6 +94,31 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.20</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-core</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-junit</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd</groupId>
+            <artifactId>serenity-rest-assured</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>net.serenity-bdd.maven.plugins</groupId>
+            <artifactId>serenity-maven-plugin</artifactId>
+            <version>${serenity.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-path</artifactId>
+            <version>4.3.3</version>
         </dependency>
     </dependencies>
 
