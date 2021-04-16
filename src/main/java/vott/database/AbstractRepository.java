@@ -1,8 +1,8 @@
 package vott.database;
 
 import vott.database.connection.ConnectionFactory;
-import vott.sqlgeneration.SqlGenerator;
-import vott.sqlgeneration.TableDetails;
+import vott.database.sqlgeneration.SqlGenerator;
+import vott.database.sqlgeneration.TableDetails;
 
 import java.sql.*;
 import java.util.ArrayList;

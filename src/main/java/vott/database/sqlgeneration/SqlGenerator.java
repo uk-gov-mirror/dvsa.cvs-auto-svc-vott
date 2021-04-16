@@ -1,4 +1,4 @@
-package vott.sqlgeneration;
+package vott.database.sqlgeneration;
 
 import java.util.Arrays;
 import java.util.List;

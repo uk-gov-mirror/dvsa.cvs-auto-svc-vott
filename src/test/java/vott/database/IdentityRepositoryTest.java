@@ -3,7 +3,7 @@ package vott.database;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import vott.config.ConfigurationProvider;
+import vott.config.VottConfiguration;
 import vott.database.connection.ConnectionFactory;
 import vott.models.dao.Identity;
 
@@ -22,7 +22,7 @@ public class IdentityRepositoryTest {
     @Before
     public void setUp() {
         ConnectionFactory connectionFactory = new ConnectionFactory(
-                ConfigurationProvider.local()
+                VottConfiguration.local()
         );
 
         identityRepository = new IdentityRepository(connectionFactory);

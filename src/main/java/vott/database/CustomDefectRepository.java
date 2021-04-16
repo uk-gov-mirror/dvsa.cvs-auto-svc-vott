@@ -2,7 +2,7 @@ package vott.database;
 
 import vott.database.connection.ConnectionFactory;
 import vott.models.dao.CustomDefect;
-import vott.sqlgeneration.TableDetails;
+import vott.database.sqlgeneration.TableDetails;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
