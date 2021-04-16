@@ -24,6 +24,7 @@ import vott.models.dto.enquiry.Vehicle;
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static vott.e2e.RestAssuredAuthenticated.givenAuth;
 
 public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
@@ -44,7 +45,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
     @Before
     public void Setup() {
-        RestAssured.baseURI = ConfigurationProvider.local().getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
+        RestAssured.baseURI = configuration.getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
         this.token = new TokenService(OAuthVersion.V1, GrantType.IMPLICIT).getBearerToken();
 
         //Connect to DB
@@ -85,9 +86,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token: " + token);
 
         String response =
-                given()//.log().all()
-                        .header("authorization", "Bearer " + token)
-                        .header("x-api-key", xApiKey)
+                givenAuth(token, xApiKey)
                         .header("content-type", "application/json")
                         .queryParam("vinNumber", validVINNumber).
 
@@ -445,9 +444,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token: " + token);
 
         String response =
-                given()//.log().all()
-                        .header("authorization", "Bearer " + token)
-                        .header("x-api-key", xApiKey)
+                givenAuth(token, xApiKey)
                         .header("content-type", "application/json")
                         .queryParam("VehicleRegMark", validVehicleRegMark).
 
@@ -473,9 +470,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Using invalid token: " + token);
 
         //prep request
-        given()//.log().all()
-            .header("authorization", "Bearer " + token + 1)
-            .header("x-api-key", xApiKey)
+        givenAuth(token + 1, xApiKey)
             .header("content-type", "application/json")
             .queryParam("VehicleRegMark", validVehicleRegMark).
 
@@ -495,9 +490,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-            .header("authorization", "Bearer " + token)
-            .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
             .header("content-type", "application/json").
 
         //send request
@@ -516,9 +509,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("VehicleRegMark", validVehicleRegMark).
@@ -539,8 +530,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-            .header("authorization", "Bearer " + token)
+        givenAuth(token)
             .header("content-type", "application/json")
             .queryParam("vinNumber", validVINNumber).
 
@@ -560,9 +550,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-            .header("authorization", "Bearer " + token)
-            .header("x-api-key", xApiKey + "badkey")
+        givenAuth(token, xApiKey + "badkey")
             .header("content-type", "application/json")
             .queryParam("VehicleRegMark", "AB15XYZ").
 
@@ -582,9 +570,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-            .header("authorization", "Bearer " + token)
-            .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
             .header("content-type", "application/json")
             .queryParam("VehicleRegMark", "AB15XYZ"). //todo send a vrm that doesn't exist in DB
 
@@ -604,9 +590,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-            .header("authorization", "Bearer " + token)
-            .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
             .header("content-type", "application/json")
             .queryParam("vinNumber", invalidVINNumber). //todo send a vin that doesn't exist in DB
 
@@ -628,9 +612,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //TODO add control chars test i.e. ctrl+c etc.
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
                 .queryParam("testNumber", validVehicleRegMark).
 
