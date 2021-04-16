@@ -13,10 +13,7 @@ import vott.config.VottConfiguration;
 import vott.config.VottConfiguration;
 import vott.database.*;
 import vott.database.connection.ConnectionFactory;
-import vott.models.dao.Axles;
-import vott.models.dao.MakeModel;
-import vott.models.dao.PSVBrakes;
-import vott.models.dao.VehicleClass;
+import vott.models.dao.*;
 import vott.models.dto.enquiry.TechnicalRecord;
 import vott.models.dto.enquiry.Vehicle;
 
@@ -43,6 +40,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     private VehicleClassRepository vehicleClassRepository;
     private PSVBrakesRepository psvBrakesRepository;
     private AxlesRepository axlesRepository;
+    private TyreRepository tyreRepository;
 
     vott.models.dao.Vehicle vehicleUpsert = newTestVehicle();
     MakeModel mm = newTestMakeModel();
@@ -50,6 +48,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     vott.models.dao.TechnicalRecord tr = newTestTechnicalRecord();
     PSVBrakes psv = newTestPSVBrakes();
     Axles axles = newTestAxles();
+    Tyre tyre = newTestTyre();
+
 
     @Before
     public void Setup() {
@@ -88,8 +88,12 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         psv.setTechnicalRecordID(String.valueOf(trId));
         psvBrakesRepository.fullUpsert(psv);
 
+        //Upsert Tyre
+        int tyreId = tyreRepository.partialUpsert(tyre);
+
         //Upsert Axles
         axles.setTechnicalRecordID(String.valueOf(trId));
+        axles.setTyreID(String.valueOf(tyreId));
         axlesRepository.fullUpsert(axles);
     }
 
@@ -648,6 +652,19 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         axles.setSpringBrakeParking("123");
 
         return axles;
+    }
+
+    private Tyre newTestTyre() {
+        Tyre tyre = new Tyre();
+
+        tyre.setTyreSize("456");
+        tyre.setPlyRating("10");
+        tyre.setFitmentCode("55555");
+        tyre.setDataTrAxles("Test Data");
+        tyre.setSpeedCategorySymbol("1");
+        tyre.setTyreCode("88888");
+
+        return tyre;
     }
 
 }
