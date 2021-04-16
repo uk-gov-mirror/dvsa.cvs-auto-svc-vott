@@ -51,9 +51,6 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     PSVBrakes psv = newTestPSVBrakes();
     Axles axles = newTestAxles();
 
-    vott.models.dao.TechnicalRecord tr = newTestTechnicalRecord();
-    vott.models.dao.Vehicle vehicleUpsert = newTestVehicle();
-
     @Before
     public void Setup() {
         RestAssured.baseURI = configuration.getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
@@ -150,8 +147,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getMakeModel().getBodyTypeCode()).isEqualTo("x");
         assertThat(technicalRecord1.getMakeModel().getChassisModel()).isEqualTo(null);
         assertThat(technicalRecord1.getMakeModel().getModelLiteral()).isEqualTo(null);
-        assertThat(technicalRecord1.getMakeModel().getBodyTypeDescription()).isEqualTo(mm.getBodyTypeDescription);
-        assertThat(technicalRecord1.getMakeModel().getFuelPropulsionSystem()).isEqualTo(makeModelRepository.getFuelPropulsionSystem);
+        assertThat(technicalRecord1.getMakeModel().getBodyTypeDescription()).isEqualTo(mm.getBodyTypeDescription());
+        assertThat(technicalRecord1.getMakeModel().getFuelPropulsionSystem()).isEqualTo(mm.getFuelPropulsionSystem());
         assertThat(technicalRecord1.getNoOfAxles()).isEqualTo(tr.getNoOfAxles());
         assertThat(technicalRecord1.getNtaNumber()).isEqualTo(tr.getNtaNumber());
         assertThat(technicalRecord1.getStatusCode()).isEqualTo(tr.getStatusCode());
@@ -224,18 +221,18 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getCentreOfRearmostAxleToRearOfTrl()).isEqualTo(tr.getCentreOfRearmostAxleToRearOfTrl());
         assertThat(technicalRecord1.getSeatbeltInstallationApprovalDate()).isEqualTo(tr.getSeatbeltInstallationApprovalDate());
         assertThat(technicalRecord1.getPsvBrakes().get(0).getBrakeCode()).isEqualTo(tr.getBrakeCode());
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getDataTrBrakeOne()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getDataTrBrakeTwo()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getDataTrBrakeThree()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getRetarderBrakeOne()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getRetarderBrakeTwo()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getBrakeCodeOriginal()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getParkingBrakeForceA()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getParkingBrakeForceB()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getServiceBrakeForceA()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getServiceBrakeForceB()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceA()).isEqualTo(null);
-//        assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceB()).isEqualTo(null);
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getDataTrBrakeOne()).isEqualTo(psv.getDataTrBrakeOne());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getDataTrBrakeTwo()).isEqualTo(psv.getDataTrBrakeTwo());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getDataTrBrakeThree()).isEqualTo(psv.getDataTrBrakeThree());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getRetarderBrakeOne()).isEqualTo(psv.getRetarderBrakeOne());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getRetarderBrakeTwo()).isEqualTo(psv.getRetarderBrakeTwo());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getBrakeCodeOriginal()).isEqualTo(psv.getBrakeCodeOriginal());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getParkingBrakeForceA()).isEqualTo(psv.getParkingBrakeForceA());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getParkingBrakeForceB()).isEqualTo(psv.getParkingBrakeForceB());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getServiceBrakeForceA()).isEqualTo(psv.getParkingBrakeForceA());
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getServiceBrakeForceB()).isEqualTo(null);
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceA()).isEqualTo(null);
+        assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceB()).isEqualTo(null);
 //        assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getTyreCode()).isEqualTo(1234); // todo not reaching the correct nested field
 //        assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getTyreSize()).isEqualTo("9.23648E+11");
 //        assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getPlyRating()).isEqualTo("AB");
