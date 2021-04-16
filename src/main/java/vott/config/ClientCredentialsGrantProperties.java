@@ -1,7 +1,9 @@
 package vott.config;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Data;
 
+@Data
 public class ClientCredentialsGrantProperties {
     @SerializedName("grantType")
     private String grantType;

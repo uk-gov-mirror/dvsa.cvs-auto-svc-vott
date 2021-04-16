@@ -15,15 +15,15 @@
       "name": "First test",
       "testTypeName": "First test",
       "testTypeId": "95",
-      "certificateNumber": null,
+      "certificateNumber": "12345678",
       "testTypeStartTimestamp": "2020-03-02T14:57:05.385Z",
       "testTypeEndTimestamp": "2020-03-02T14:57:31.068Z",
       "testExpiryDate": null,
       "testResult": "pass",
       "prohibitionIssued": false,
       "reasonForAbandoning": null,
-      "additionalCommentsForAbandon": null,
-      "additionalNotesRecorded": null,
+      "additionalCommentsForAbandon": " ",
+      "additionalNotesRecorded": "notes",
       "defects": [
         {
           "imNumber": 3000,

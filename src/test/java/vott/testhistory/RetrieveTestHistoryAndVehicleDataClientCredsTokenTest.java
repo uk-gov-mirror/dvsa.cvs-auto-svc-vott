@@ -6,6 +6,7 @@ import org.junit.Test;
 import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
+import vott.config.ConfigurationProvider;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -23,7 +24,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
 
     @Before
     public void Setup() {
-        RestAssured.baseURI = "https://api.develop.cvs.dvsacloud.uk/cvsb-19222/v1/enquiry/vehicle";
+        RestAssured.baseURI = ConfigurationProvider.local().getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
         this.token = new TokenService(OAuthVersion.V2, GrantType.CLIENT_CREDENTIALS).getBearerToken();
     }
 

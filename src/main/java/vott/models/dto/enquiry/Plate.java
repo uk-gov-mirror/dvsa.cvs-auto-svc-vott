@@ -33,7 +33,7 @@ public class Plate {
   private String plateReasonForIssue = null;
 
   @SerializedName("plateIssuer")
-  private Integer plateIssuer = null;
+  private String plateIssuer = null;
 
   public Plate plateSerialNumber(String plateSerialNumber) {
     this.plateSerialNumber = plateSerialNumber;
@@ -86,7 +86,7 @@ public class Plate {
     this.plateReasonForIssue = plateReasonForIssue;
   }
 
-  public Plate plateIssuer(Integer plateIssuer) {
+  public Plate plateIssuer(String plateIssuer) {
     this.plateIssuer = plateIssuer;
     return this;
   }
@@ -95,11 +95,11 @@ public class Plate {
    * Get plateIssuer
    * @return plateIssuer
   **/
-  public Integer getPlateIssuer() {
+  public String getPlateIssuer() {
     return plateIssuer;
   }
 
-  public void setPlateIssuer(Integer plateIssuer) {
+  public void setPlateIssuer(String plateIssuer) {
     this.plateIssuer = plateIssuer;
   }
 

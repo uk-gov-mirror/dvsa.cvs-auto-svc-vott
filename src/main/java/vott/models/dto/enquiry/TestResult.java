@@ -14,9 +14,9 @@ package vott.models.dto.enquiry;
 
 import com.google.gson.annotations.SerializedName;
 
+import javax.annotation.processing.Generated;
 import java.util.ArrayList;
 import java.util.List;
-import javax.annotation.processing.Generated;
 import java.util.Objects;
 
 /**
@@ -28,13 +28,13 @@ public class TestResult {
   @SerializedName("fuelEmission")
   private FuelEmission fuelEmission = null;
 
-  @SerializedName("testStation")
+  @SerializedName(value = "testStation", alternate = "test_station")
   private TestStation testStation = null;
 
   @SerializedName("tester")
   private Tester tester = null;
 
-  @SerializedName("vehicleClass")
+  @SerializedName(value = "vehicleClass", alternate = "vehicle_class")
   private VehicleClass vehicleClass = null;
 
   @SerializedName("testType")

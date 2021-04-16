@@ -1,5 +1,9 @@
 package vott.auth;
 
+import vott.config.ClientCredentialsGrantProperties;
+import vott.config.ConfigurationProvider;
+import vott.config.ImplicitGrantProperties;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,11 +13,15 @@ public enum GrantType {
         protected Map<String, Object> formParams() {
             Map<String, Object> formParams = new HashMap<>();
 
-            formParams.put("grant_type", "password");
-            formParams.put("userName", "");
-            formParams.put("password", "");
-            formParams.put("resource", "");
-            formParams.put("client_id", "");
+            ImplicitGrantProperties properties = ConfigurationProvider.local()
+                .getOAuthProperties()
+                .getImplicit();
+
+            formParams.put("grant_type", properties.getGrantType());
+            formParams.put("userName", properties.getUsername());
+            formParams.put("password", properties.getPassword());
+            formParams.put("resource", properties.getResource());
+            formParams.put("client_id", properties.getClientId());
 
             return formParams;
         }
@@ -23,10 +31,14 @@ public enum GrantType {
         protected Map<String, Object> formParams() {
             Map<String, Object> formParams = new HashMap<>();
 
-            formParams.put("grant_type", "client_credentials");
-            formParams.put("scope", "");
-            formParams.put("client_secret", "");
-            formParams.put("client_id", "");
+            ClientCredentialsGrantProperties properties = ConfigurationProvider.local()
+                .getOAuthProperties()
+                .getClientCredentials();
+
+            formParams.put("grant_type", properties.getGrantType());
+            formParams.put("scope", properties.getScope());
+            formParams.put("client_secret", properties.getClientSecret());
+            formParams.put("client_id", properties.getClientId());
 
             return formParams;
         }
