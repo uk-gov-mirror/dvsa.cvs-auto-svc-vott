@@ -3,7 +3,7 @@ package vott.database;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import vott.config.ConfigurationProvider;
+import vott.config.VottConfiguration;
 import vott.database.connection.ConnectionFactory;
 import vott.models.dao.VehicleClass;
 
@@ -21,7 +21,7 @@ public class VehicleClassRepositoryTest {
     @Before
     public void setUp() {
         ConnectionFactory connectionFactory = new ConnectionFactory(
-                ConfigurationProvider.local()
+                VottConfiguration.local()
         );
 
         vehicleClassRepository = new VehicleClassRepository(connectionFactory);

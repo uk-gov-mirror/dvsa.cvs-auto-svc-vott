@@ -6,7 +6,7 @@ import org.junit.Test;
 import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
-import vott.config.ConfigurationProvider;
+import vott.config.VottConfiguration;
 import vott.config.VottConfiguration;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -15,7 +15,7 @@ import static vott.e2e.RestAssuredAuthenticated.givenAuth;
 public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
 
     // Variable + Constant Test Data Setup
-    private VottConfiguration configuration = ConfigurationProvider.local();
+    private VottConfiguration configuration = VottConfiguration.local();
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
     private final String validVINNumber = "T12765432";
@@ -26,7 +26,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
 
     @Before
     public void Setup() {
-        RestAssured.baseURI = ConfigurationProvider.local().getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
+        RestAssured.baseURI = VottConfiguration.local().getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
         this.token = new TokenService(OAuthVersion.V2, GrantType.CLIENT_CREDENTIALS).getBearerToken();
     }
 

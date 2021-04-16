@@ -10,7 +10,6 @@ import org.testcontainers.shaded.com.google.common.reflect.TypeToken;
 import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
-import vott.config.ConfigurationProvider;
 import vott.config.VottConfiguration;
 import vott.database.TestResultRepository;
 import vott.database.VehicleRepository;
@@ -50,7 +49,7 @@ public class E2eTest {
 
     @Before
     public void setUp() throws Exception {
-        configuration = ConfigurationProvider.local();
+        configuration = VottConfiguration.local();
 
         gson = GsonInstance.get();
 
@@ -58,7 +57,7 @@ public class E2eTest {
 
         v1ImplicitTokens = new TokenService(OAuthVersion.V1, GrantType.IMPLICIT);
 
-        ConnectionFactory connectionFactory = new ConnectionFactory(ConfigurationProvider.local());
+        ConnectionFactory connectionFactory = new ConnectionFactory(VottConfiguration.local());
 
         vehicleRepository = new VehicleRepository(connectionFactory);
 

@@ -1,7 +1,7 @@
 package vott.auth;
 
 import vott.config.ClientCredentialsGrantProperties;
-import vott.config.ConfigurationProvider;
+import vott.config.VottConfiguration;
 import vott.config.ImplicitGrantProperties;
 
 import java.util.HashMap;
@@ -13,7 +13,7 @@ public enum GrantType {
         protected Map<String, Object> formParams() {
             Map<String, Object> formParams = new HashMap<>();
 
-            ImplicitGrantProperties properties = ConfigurationProvider.local()
+            ImplicitGrantProperties properties = VottConfiguration.local()
                 .getOAuthProperties()
                 .getImplicit();
 
@@ -31,7 +31,7 @@ public enum GrantType {
         protected Map<String, Object> formParams() {
             Map<String, Object> formParams = new HashMap<>();
 
-            ClientCredentialsGrantProperties properties = ConfigurationProvider.local()
+            ClientCredentialsGrantProperties properties = VottConfiguration.local()
                 .getOAuthProperties()
                 .getClientCredentials();
 
