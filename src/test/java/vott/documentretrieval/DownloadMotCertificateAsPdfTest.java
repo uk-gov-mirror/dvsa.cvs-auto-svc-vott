@@ -226,8 +226,6 @@ public class DownloadMotCertificateAsPdfTest{
             body(equalTo("NoSuchKey"));
     }
 
-    //todo what is the standard error for when data is provided in the wrong format
-    //todo what are the acceptable formats of VIN and Test numbers
     @Test
     public void DownloadTestCertificateNumericTestNumberTest() {
 
@@ -270,7 +268,6 @@ public class DownloadMotCertificateAsPdfTest{
             body(equalTo("NoSuchKey"));
     }
 
-    //todo Doesnt return the same status code or message as numeric test number - line 242
     @Test
     public void DownloadTestCertificateNumericVINNumberTest() {
 
