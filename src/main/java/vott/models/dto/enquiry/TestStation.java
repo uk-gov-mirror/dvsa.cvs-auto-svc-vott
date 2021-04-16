@@ -23,7 +23,7 @@ import java.util.Objects;
 
 @Generated(value = "io.swagger.codegen.v3.generators.java.JavaClientCodegen", date = "2021-04-13T17:16:44.237Z[GMT]")
 public class TestStation {
-  @SerializedName("stationNumber")
+  @SerializedName(value = "stationNumber", alternate = "pNumber")
   private String stationNumber = null;
 
   @SerializedName("name")

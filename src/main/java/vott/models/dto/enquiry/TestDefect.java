@@ -36,7 +36,7 @@ public class TestDefect {
   private Boolean prs = null;
 
   @SerializedName("prohibitionIssued")
-  private Integer prohibitionIssued = null;
+  private Boolean prohibitionIssued = null;
 
   public TestDefect defect(Defect defect) {
     this.defect = defect;
@@ -106,7 +106,7 @@ public class TestDefect {
     this.prs = prs;
   }
 
-  public TestDefect prohibitionIssued(Integer prohibitionIssued) {
+  public TestDefect prohibitionIssued(Boolean prohibitionIssued) {
     this.prohibitionIssued = prohibitionIssued;
     return this;
   }
@@ -115,11 +115,11 @@ public class TestDefect {
    * Get prohibitionIssued
    * @return prohibitionIssued
   **/
-  public Integer getProhibitionIssued() {
+  public Boolean getProhibitionIssued() {
     return prohibitionIssued;
   }
 
-  public void setProhibitionIssued(Integer prohibitionIssued) {
+  public void setProhibitionIssued(Boolean prohibitionIssued) {
     this.prohibitionIssued = prohibitionIssued;
   }
 

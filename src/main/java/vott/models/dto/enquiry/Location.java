@@ -30,10 +30,10 @@ public class Location {
   private String horizontal = null;
 
   @SerializedName("lateral")
-  private Integer lateral = null;
+  private String lateral = null;
 
   @SerializedName("longitudinal")
-  private Integer longitudinal = null;
+  private String longitudinal = null;
 
   @SerializedName("rowNumber")
   private Integer rowNumber = null;
@@ -78,7 +78,7 @@ public class Location {
     this.horizontal = horizontal;
   }
 
-  public Location lateral(Integer lateral) {
+  public Location lateral(String lateral) {
     this.lateral = lateral;
     return this;
   }
@@ -87,15 +87,15 @@ public class Location {
    * Get lateral
    * @return lateral
   **/
-  public Integer getLateral() {
+  public String getLateral() {
     return lateral;
   }
 
-  public void setLateral(Integer lateral) {
+  public void setLateral(String lateral) {
     this.lateral = lateral;
   }
 
-  public Location longitudinal(Integer longitudinal) {
+  public Location longitudinal(String longitudinal) {
     this.longitudinal = longitudinal;
     return this;
   }
@@ -104,11 +104,11 @@ public class Location {
    * Get longitudinal
    * @return longitudinal
   **/
-  public Integer getLongitudinal() {
+  public String getLongitudinal() {
     return longitudinal;
   }
 
-  public void setLongitudinal(Integer longitudinal) {
+  public void setLongitudinal(String longitudinal) {
     this.longitudinal = longitudinal;
   }
 
