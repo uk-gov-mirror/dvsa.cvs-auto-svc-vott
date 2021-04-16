@@ -1,4 +1,4 @@
-package vott.TestHistory;
+package vott.testhistory;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

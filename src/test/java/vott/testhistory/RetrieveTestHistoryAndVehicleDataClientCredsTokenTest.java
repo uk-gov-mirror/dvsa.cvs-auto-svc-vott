@@ -1,4 +1,4 @@
-package vott.TestHistory;
+package vott.testhistory;
 
 import io.restassured.RestAssured;
 import org.junit.Before;
