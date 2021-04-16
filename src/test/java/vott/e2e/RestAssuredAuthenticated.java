@@ -7,7 +7,8 @@ import static io.restassured.RestAssured.given;
 public class RestAssuredAuthenticated {
 
     public static RequestSpecification givenAuth(String bearerToken) {
-        return given().header("Authorization", "Bearer " + bearerToken).header("Accept", "*/*");
+        return given()
+            .header("Authorization", "Bearer " + bearerToken);
     }
 
     public static RequestSpecification givenAuth(String bearerToken, String apiKey) {

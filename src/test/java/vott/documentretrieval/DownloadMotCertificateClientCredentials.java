@@ -18,6 +18,7 @@ import java.util.Base64;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static vott.e2e.RestAssuredAuthenticated.givenAuth;
 
 public class DownloadMotCertificateClientCredentials {
 
@@ -44,9 +45,7 @@ public class DownloadMotCertificateClientCredentials {
 
         //Retrieve and save test certificate (pdf) as byteArray
         byte[] pdf =
-                given()//.log().all()
-                        .header("authorization", "Bearer " + token)
-                        .header("x-api-key", xApiKey)
+            givenAuth(token, xApiKey)
                         .header("content-type", "application/pdf")
                         .queryParam("vinNumber", validVINNumber)
                         .queryParam("testNumber", validTestNumber).
@@ -91,9 +90,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Using invalid token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token + 1)
-                .header("x-api-key", xApiKey)
+        givenAuth(token + 1, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", validTestNumber).
@@ -113,7 +110,7 @@ public class DownloadMotCertificateClientCredentials {
 
         //prep request
         given()//.log().all()
-                .header("x-api-key", xApiKey)
+                .header("X-Api-Key", xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", validTestNumber).
@@ -134,9 +131,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("testNumber", validTestNumber).
 
@@ -155,9 +150,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber).
 
@@ -176,8 +169,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
+        givenAuth(token)
                 .header("content-type", "application/pdf")
                 .queryParam("testNumber", validTestNumber)
                 .queryParam("vinNumber", validVINNumber).
@@ -198,9 +190,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey + "badkey")
+        givenAuth(token, xApiKey + "badkey")
                 .header("content-type", "application/pdf")
                 .queryParam("testNumber", validTestNumber)
                 .queryParam("vinNumber", validVINNumber).
@@ -221,9 +211,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", invalidTestNumber).
@@ -246,9 +234,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Using valid token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", "123456789").
@@ -269,9 +255,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", invalidVINNumber)
                 .queryParam("testNumber", validTestNumber).
@@ -293,9 +277,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Using valid token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", "123456789")
                 .queryParam("testNumber", validTestNumber).
@@ -316,9 +298,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", "T12765@!'") //https://www.oreilly.com/library/view/java-cookbook/0596001703/ch03s12.html
                 .queryParam("testNumber", validTestNumber).
@@ -339,9 +319,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber) //https://www.oreilly.com/library/view/java-cookbook/0596001703/ch03s12.html
                 .queryParam("testNumber", "123Abc@!/").
@@ -362,9 +340,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", validTestNumber).
@@ -383,9 +359,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", validTestNumber).
@@ -404,9 +378,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token: " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", validTestNumber).
@@ -425,9 +397,7 @@ public class DownloadMotCertificateClientCredentials {
         System.out.println("Valid access token " + token);
 
         //prep request
-        given()//.log().all()
-                .header("authorization", "Bearer " + token)
-                .header("x-api-key", xApiKey)
+        givenAuth(token, xApiKey)
                 .header("content-type", "application/pdf")
                 .queryParam("vinNumber", validVINNumber)
                 .queryParam("testNumber", validTestNumber).
