@@ -39,7 +39,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
     @Before
     public void Setup() {
-        RestAssured.baseURI = "https://api.develop.cvs.dvsacloud.uk/cvsb-19222/v1/enquiry/vehicle";
+        RestAssured.baseURI = ConfigurationProvider.local().getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
         this.token = new TokenService(OAuthVersion.V1, GrantType.IMPLICIT).getBearerToken();
 
         //Connect to DB

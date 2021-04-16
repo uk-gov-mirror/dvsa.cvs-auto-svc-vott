@@ -180,7 +180,7 @@ public class E2eTest {
         int maxRetries = 3;
         do {
             response = givenAuth(v1ImplicitTokens.getBearerToken())
-                .baseUri("https://api.develop.cvs.dvsacloud.uk/cvsb-19222")
+                .baseUri(configuration.getApiProperties().getBranchSpecificUrl())
                 .body(techRecordJson)
                 .post("/vehicles")
                 .thenReturn();
@@ -201,7 +201,7 @@ public class E2eTest {
         int maxRetries = 3;
         do {
             response = givenAuth(v1ImplicitTokens.getBearerToken())
-                .baseUri("https://api.develop.cvs.dvsacloud.uk/cvsb-19222")
+                .baseUri(configuration.getApiProperties().getBranchSpecificUrl())
                 .body(testResultJson)
                 .post("/test-results")
                 .thenReturn();
@@ -216,7 +216,7 @@ public class E2eTest {
         String bearerToken = v1ImplicitTokens.getBearerToken();
 
         Response response = givenAuth(bearerToken, configuration.getApiKeys().getEnquiryServiceApiKey())
-            .baseUri("https://api.develop.cvs.dvsacloud.uk/cvsb-19222")
+            .baseUri(configuration.getApiProperties().getBranchSpecificUrl())
             .accept(ContentType.JSON)
             .queryParam("vinNumber", vinNumber)
             .get("v1/enquiry/vehicle")
@@ -231,7 +231,7 @@ public class E2eTest {
         String bearerToken = v1ImplicitTokens.getBearerToken();
 
         Response response = givenAuth(bearerToken, configuration.getApiKeys().getEnquiryServiceApiKey())
-            .baseUri("https://api.develop.cvs.dvsacloud.uk/cvsb-19222")
+            .baseUri(configuration.getApiProperties().getBranchSpecificUrl())
             .accept(ContentType.JSON)
             .queryParam("vinNumber", vinNumber)
             .get("v1/enquiry/testResults")
