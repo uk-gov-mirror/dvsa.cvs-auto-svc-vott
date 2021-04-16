@@ -24,7 +24,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
     // Variable + Constant Test Data Setup
-    private VottConfiguration configuration;
+    private VottConfiguration configuration = ConfigurationProvider.local();
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
     private  String validVINNumber = "";

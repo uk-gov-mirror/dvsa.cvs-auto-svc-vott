@@ -6,6 +6,7 @@ import org.junit.Test;
 import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
+import vott.config.ConfigurationProvider;
 import vott.config.VottConfiguration;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class DownloadMotCertificateAsPdfTest{
 
     // Variable + Constant Test Data Setup
-    private VottConfiguration configuration;
+    private VottConfiguration configuration = ConfigurationProvider.local();
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
     private final String validVINNumber = "T12765432";

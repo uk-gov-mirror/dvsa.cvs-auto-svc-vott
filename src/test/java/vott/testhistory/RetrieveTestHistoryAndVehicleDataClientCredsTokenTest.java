@@ -7,6 +7,7 @@ import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
 import vott.config.ConfigurationProvider;
+import vott.config.VottConfiguration;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -14,8 +15,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
 
     // Variable + Constant Test Data Setup
+    private VottConfiguration configuration = ConfigurationProvider.local();
     private String token;
-    private final String xApiKey = "";
+    private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
     private final String validVINNumber = "T12765432";
     private final String validTestNumber = "W01A00229";
 
