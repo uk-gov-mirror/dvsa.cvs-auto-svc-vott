@@ -11,9 +11,13 @@ import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
 import vott.config.VottConfiguration;
 import vott.config.VottConfiguration;
+import vott.database.MakeModelRepository;
 import vott.database.TechnicalRecordRepository;
+import vott.database.VehicleClassRepository;
 import vott.database.VehicleRepository;
 import vott.database.connection.ConnectionFactory;
+import vott.models.dao.MakeModel;
+import vott.models.dao.VehicleClass;
 import vott.models.dto.enquiry.TechnicalRecord;
 import vott.models.dto.enquiry.Vehicle;
 
@@ -36,7 +40,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
     private VehicleRepository vehicleRepository;
     private TechnicalRecordRepository technicalRecordRepository;
-
+    private MakeModelRepository makeModelRepository;
+    private VehicleClassRepository vehicleClassRepository;
 
     @Before
     public void Setup() {
@@ -49,15 +54,27 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         );
         vehicleRepository = new VehicleRepository(connectionFactory);
         technicalRecordRepository = new TechnicalRecordRepository(connectionFactory);
+        makeModelRepository = new MakeModelRepository(connectionFactory);
+        vehicleClassRepository = new VehicleClassRepository(connectionFactory);
 
         //Upsert Vehicle
         vott.models.dao.Vehicle vehicleUpsert = newTestVehicle();
         int vehicleID = vehicleRepository.fullUpsert(vehicleUpsert);
         validVINNumber = vehicleUpsert.getVin();
 
+        //Upsert MakeModel
+        MakeModel mm = newTestMakeModel();
+        int mmId = makeModelRepository.partialUpsert(mm);
+
+        //Upsert Vehicle Class
+        VehicleClass vc = newTestVehicleClass();
+        int vcId = vehicleClassRepository.partialUpsert(vc);
+
         //upsert Tech Record
         vott.models.dao.TechnicalRecord tr = newTestTechnicalRecord();
         tr.setVehicleID(String.valueOf(vehicleID));
+        tr.setMakeModelID(String.valueOf(mmId));
+        tr.setVehicleClassID(String.valueOf(vcId));
         technicalRecordRepository.fullUpsert(tr);
 
     }
@@ -709,6 +726,37 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         vehicle.setTrailerID("88888888");
 
         return vehicle;
+    }
+
+    private MakeModel newTestMakeModel() {
+        MakeModel mm = new MakeModel();
+
+        mm.setMake("Test Make");
+        mm.setModel("Test Model");
+        mm.setChassisMake("Test Chassis Make");
+        mm.setChassisModel("Test Chassis Model");
+        mm.setBodyMake("Test Body Make");
+        mm.setBodyModel("Test Body Model");
+        mm.setModelLiteral("Test Model Literal");
+        mm.setBodyTypeCode("1");
+        mm.setBodyTypeDescription("Test Description");
+        mm.setFuelPropulsionSystem("Test Fuel");
+        mm.setDtpCode("888888");
+
+        return mm;
+    }
+
+    private VehicleClass newTestVehicleClass() {
+        VehicleClass vc = new VehicleClass();
+
+        vc.setCode("1");
+        vc.setDescription("Test Description");
+        vc.setVehicleType("Test Type");
+        vc.setVehicleSize("55555");
+        vc.setVehicleConfiguration("Test Configuration");
+        vc.setEuVehicleCategory("ABC");
+
+        return vc;
     }
 
 }
