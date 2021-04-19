@@ -1,6 +1,7 @@
 package vott.documentretrieval;
 
 import io.restassured.RestAssured;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import vott.auth.GrantType;
@@ -8,13 +9,22 @@ import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
 import vott.config.VottConfiguration;
 import vott.config.VottConfiguration;
+import vott.database.TestResultRepository;
+import vott.database.TestTypeRepository;
+import vott.database.VehicleRepository;
+import vott.database.connection.ConnectionFactory;
+import vott.models.dao.TestResult;
+import vott.models.dao.TestType;
+import vott.models.dao.Vehicle;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Base64;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -24,18 +34,68 @@ public class DownloadMotCertificateClientCredentials {
 
     // Variable + Constant Test Data Setup
     private VottConfiguration configuration = VottConfiguration.local();
+
+    private VehicleRepository vehicleRepository;
+    private TestResultRepository testResultRepository;
+    private TestTypeRepository testTypeRepository;
+
+    private List<Integer> deleteVehicleOnExit = new ArrayList<>();
+    private List<Integer> deleteTestResultOnExit = new ArrayList<>();
+    private List<Integer> deleteTestTypeOnExit = new ArrayList<>();
+
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
-    private final String validVINNumber = "T12765432";
-    private final String validTestNumber = "W01A00229";
 
-    private final String invalidVINNumber = "T12765431";
-    private final String invalidTestNumber = "W01A00222";
+
+    private String validVINNumber = "";
+    private String validTestNumber = "";
+    private String invalidVINNumber = "T12765431";
+    private String invalidTestNumber = "W01A00222";
 
     @Before
     public void Setup() {
+        ConnectionFactory connectionFactory = new ConnectionFactory(
+                VottConfiguration.local()
+        );
+
+        //Upsert Test Type
+        testTypeRepository = new TestTypeRepository(connectionFactory);
+        TestType tt = newTestTestType();
+        int ttID = testTypeRepository.partialUpsert(tt);
+        deleteTestTypeOnExit.add(ttID);
+
+        //Upsert Vehicle
+        vehicleRepository = new VehicleRepository(connectionFactory);
+        Vehicle vehicle = newTestVehicle();
+        int vehicleID = vehicleRepository.fullUpsert(vehicle);
+        deleteVehicleOnExit.add(vehicleID);
+
+        //Upsert Test Result
+        testResultRepository = new TestResultRepository(connectionFactory);
+        TestResult tr = newTestTestResult();
+        tr.setVehicleID(String.valueOf(vehicleID));
+        tr.setTestTypeID(String.valueOf(ttID));
+        int trID = testResultRepository.fullUpsert(tr);
+        deleteTestResultOnExit.add(trID);
+
+        validVINNumber = vehicle.getVin();
+        validTestNumber= tr.getTestNumber();
+
         this.token = new TokenService(OAuthVersion.V1, GrantType.IMPLICIT).getBearerToken();
         RestAssured.baseURI = configuration.getApiProperties().getBranchSpecificUrl() + "/v1/document-retrieval";
+    }
+
+    @After
+    public void tearDown() {
+        for (int primaryKey : deleteTestResultOnExit) {
+            testResultRepository.delete(primaryKey);
+        }
+        for (int primaryKey : deleteTestTypeOnExit) {
+            testTypeRepository.delete(primaryKey);
+        }
+        for (int primaryKey : deleteVehicleOnExit) {
+            vehicleRepository.delete(primaryKey);
+        }
     }
 
     @Test
@@ -408,5 +468,74 @@ public class DownloadMotCertificateClientCredentials {
                 //verification
                         then().//log().all().
                 statusCode(405);
+    }
+
+    //Test Vehicle Data Setup
+    private Vehicle newTestVehicle() {
+        Vehicle vehicle = new Vehicle();
+
+        vehicle.setSystemNumber("SYSTEM-NUMBER");
+        vehicle.setVin("Test VIN");
+        vehicle.setVrm_trm("999999999");
+        vehicle.setTrailerID("88888888");
+
+        return vehicle;
+    }
+
+    //Test Test Result Data Setup
+    private TestResult newTestTestResult() {
+        TestResult tr = new TestResult();
+
+        tr.setVehicleID("1");
+        tr.setFuelEmissionID("1");
+        tr.setTestStationID("1");
+        tr.setTesterID("1");
+        tr.setPreparerID("1");
+        tr.setVehicleClassID("1");
+        tr.setTestTypeID("1");
+        tr.setTestStatus("Test Pass");
+        tr.setReasonForCancellation("Automation Test Run");
+        tr.setNumberOfSeats("3");
+        tr.setOdometerReading("900");
+        tr.setOdometerReadingUnits("Test Units");
+        tr.setCountryOfRegistration("Test Country");
+        tr.setNoOfAxles("4");
+        tr.setRegnDate("2100-12-31");
+        tr.setFirstUseDate("2100-12-31");
+        tr.setCreatedAt("2021-01-01 00:00:00");
+        tr.setLastUpdatedAt("2021-01-01 00:00:00");
+        tr.setTestCode("111");
+        tr.setTestNumber("A111B222");
+        tr.setCertificateNumber("A111B222");
+        tr.setSecondaryCertificateNumber("A111B222");
+        tr.setTestExpiryDate("2022-01-01");
+        tr.setTestAnniversaryDate("2022-01-01");
+        tr.setTestTypeStartTimestamp("2022-01-01 00:00:00");
+        tr.setTestTypeEndTimestamp("2022-01-01 00:00:00");
+        tr.setNumberOfSeatbeltsFitted("2");
+        tr.setLastSeatbeltInstallationCheckDate("2022-01-01");
+        tr.setSeatbeltInstallationCheckDate("1");
+        tr.setTestResult("Auto Test");
+        tr.setReasonForAbandoning("Test Automation Run");
+        tr.setAdditionalNotesRecorded("Additional Test Notes");
+        tr.setAdditionalCommentsForAbandon("Additional Test Comments");
+        tr.setParticulateTrapFitted("Particulate Test");
+        tr.setParticulateTrapSerialNumber("ABC123");
+        tr.setModificationTypeUsed("Test Modification");
+        tr.setSmokeTestKLimitApplied("Smoke Test");
+        tr.setCreatedByID("1");
+        tr.setLastUpdatedByID("1");
+
+        return tr;
+    }
+
+    //Test Test Type Data Setup
+    private TestType newTestTestType() {
+        TestType tt = new TestType();
+
+        tt.setTestTypeClassification("Test Test Type");
+        tt.setTestTypeName("Test Name");
+
+        return tt;
     }
 }

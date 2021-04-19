@@ -10,7 +10,6 @@ import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
 import vott.config.VottConfiguration;
-import vott.config.VottConfiguration;
 import vott.database.*;
 import vott.database.connection.ConnectionFactory;
 import vott.models.dao.*;
@@ -144,7 +143,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(vehicle.getTrailerId()).isEqualTo(vehicleUpsert.getTrailerID());
         assertThat(vehicle.getSystemNumber()).isEqualTo(vehicleUpsert.getSystemNumber());
         assertThat(technicalRecord1.getNotes()).isEqualTo(tr.getNotes());
-        assertThat(technicalRecord1.getWidth()).isEqualTo(tr.getWidth());
+        assertThat(technicalRecord1.getWidth()).isEqualTo(Integer.parseInt(tr.getWidth()));
         assertThat(technicalRecord1.getHeight()).isEqualTo(tr.getHeight());
         assertThat(technicalRecord1.getLength()).isEqualTo(tr.getLength());
         assertThat(technicalRecord1.isOffRoad()).isEqualTo(tr.getOffRoad());
