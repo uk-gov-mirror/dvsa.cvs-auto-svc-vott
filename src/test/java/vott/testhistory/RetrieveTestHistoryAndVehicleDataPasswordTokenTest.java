@@ -70,6 +70,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         vehicleClassRepository = new VehicleClassRepository(connectionFactory);
         psvBrakesRepository = new PSVBrakesRepository(connectionFactory);
         axlesRepository = new AxlesRepository(connectionFactory);
+        tyreRepository = new TyreRepository(connectionFactory);
         plateRepository = new PlateRepository(connectionFactory);
         axleSpacingRepository = new AxleSpacingRepository(connectionFactory);
 
