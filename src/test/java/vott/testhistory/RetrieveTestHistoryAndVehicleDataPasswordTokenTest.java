@@ -41,6 +41,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     private PSVBrakesRepository psvBrakesRepository;
     private AxlesRepository axlesRepository;
     private TyreRepository tyreRepository;
+    private PlateRepository plateRepository;
+    private AxleSpacingRepository axleSpacingRepository;
 
     vott.models.dao.Vehicle vehicleUpsert = newTestVehicle();
     MakeModel mm = newTestMakeModel();
@@ -49,7 +51,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     PSVBrakes psv = newTestPSVBrakes();
     Axles axles = newTestAxles();
     Tyre tyre = newTestTyre();
-
+    Plate plate = newTestPlate();
+    AxleSpacing as = newTestAxleSpacing();
 
     @Before
     public void Setup() {
@@ -67,6 +70,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         vehicleClassRepository = new VehicleClassRepository(connectionFactory);
         psvBrakesRepository = new PSVBrakesRepository(connectionFactory);
         axlesRepository = new AxlesRepository(connectionFactory);
+        plateRepository = new PlateRepository(connectionFactory);
+        axleSpacingRepository = new AxleSpacingRepository(connectionFactory);
 
         //Upsert Vehicle
         int vehicleID = vehicleRepository.fullUpsert(vehicleUpsert);
@@ -95,6 +100,14 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         axles.setTechnicalRecordID(String.valueOf(trId));
         axles.setTyreID(String.valueOf(tyreId));
         axlesRepository.fullUpsert(axles);
+
+        //Upsert Axle spacing
+        as.setTechnicalRecordID(String.valueOf(trId));
+        axleSpacingRepository.fullUpsert(as);
+
+        //Upsert Plate
+        plate.setTechnicalRecordID(String.valueOf(trId));
+        plateRepository.fullUpsert(plate);
     }
 
 
@@ -830,6 +843,27 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         return tyre;
     }
 
+    private AxleSpacing newTestAxleSpacing() {
+        AxleSpacing as = new AxleSpacing();
+
+        as.setTechnicalRecordID("1");
+        as.setAxles("Test");
+        as.setValue("120");
+
+        return as;
+    }
+
+    private Plate newTestPlate() {
+        Plate plate = new Plate();
+
+        plate.setTechnicalRecordID("1");
+        plate.setPlateSerialNumber("666666");
+        plate.setPlateIssueDate("2100-12-31");
+        plate.setPlateReasonForIssue("Test Reason");
+        plate.setPlateIssuer("Auto Test");
+
+        return plate;
+    }
 }
 
 
