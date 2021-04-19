@@ -138,12 +138,10 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
         TechnicalRecord technicalRecord1 = vehicle.getTechnicalrecords().get(0);
 
-        // root:
         assertThat(vehicle.getVin()).isEqualTo(vehicleUpsert.getVin());
         assertThat(vehicle.getVrmTrm()).isEqualTo(vehicleUpsert.getVrm_trm());
         assertThat(vehicle.getTrailerId()).isEqualTo(vehicleUpsert.getTrailerID());
         assertThat(vehicle.getSystemNumber()).isEqualTo(vehicleUpsert.getSystemNumber());
-        // tecnicalrecords:
         assertThat(technicalRecord1.getNotes()).isEqualTo(tr.getNotes());
         assertThat(technicalRecord1.getWidth()).isEqualTo(tr.getWidth());
         assertThat(technicalRecord1.getHeight()).isEqualTo(tr.getHeight());
@@ -155,7 +153,6 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getBrakeCode()).isEqualTo(tr.getBrakeCode());
         assertThat(technicalRecord1.getCreatedAt()).isEqualTo(tr.getCreatedAt());
         assertThat(technicalRecord1.getDtpNumber()).isEqualTo(tr.getBrakes_dtpNumber());
-        // tecnicalrecords.makeModel:
         assertThat(technicalRecord1.getMakeModel().getMake()).isEqualTo(mm.getMake());
         assertThat(technicalRecord1.getMakeModel().getModel()).isEqualTo(mm.getModel());
 //        assertThat(technicalRecord1.getMakeModel().get(0).getDtpCode()).isEqualTo(null); // todo not asserting against this as not in scope
@@ -167,7 +164,6 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getMakeModel().getModelLiteral()).isEqualTo(mm.getModelLiteral());
         assertThat(technicalRecord1.getMakeModel().getBodyTypeDescription()).isEqualTo(mm.getBodyTypeDescription());
         assertThat(technicalRecord1.getMakeModel().getFuelPropulsionSystem()).isEqualTo(mm.getFuelPropulsionSystem());
-        // tecnicalrecords:
         assertThat(technicalRecord1.getNoOfAxles()).isEqualTo(tr.getNoOfAxles());
         assertThat(technicalRecord1.getNtaNumber()).isEqualTo(tr.getNtaNumber());
         assertThat(technicalRecord1.getStatusCode()).isEqualTo(tr.getStatusCode());
@@ -300,12 +296,12 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getAxles().get(2).getBrakeActuator()).isEqualTo(axles.getBrakeActuator()); // todo end
         assertThat(technicalRecord1.getAxles().get(2).isParkingBrakeMrk()).isEqualTo(axles.getParkingBrakeMrk());
         assertThat(technicalRecord1.getAxles().get(2).isSpringBrakeParking()).isEqualTo(axles.getSpringBrakeParking());
-//        assertThat(technicalRecord1.getAxlespacing().get(0).getAxles()).isEqualTo(); // todo axleSpacing missing
-//        assertThat(technicalRecord1.getAxlespacing().get(0).getValue()).isEqualTo(); // todo AxleSpacing missing
-//        assertThat(technicalRecord1.getPlates().get(0).getPlateIssuer()).isEqualTo(plates.getPlateissuer); // todo Plates missing
-//        assertThat(technicalRecord1.getPlates().get(0).getPlateIssueDate()).isEqualTo(plates.getplateIssueDate);
-//        assertThat(technicalRecord1.getPlates().get(0).getPlateSerialNumber()).isEqualTo(plates.getplateSerialNumber);
-//        assertThat(technicalRecord1.getPlates().get(0).getPlateReasonForIssue()).isEqualTo(plates.getplateReasonForIssue); // todo Plates missing
+        assertThat(technicalRecord1.getAxlespacing().get(0).getAxles()).isEqualTo(as.getAxles()); // todo axleSpacing missingx
+        assertThat(technicalRecord1.getAxlespacing().get(0).getValue()).isEqualTo(as.getValue()); // todo AxleSpacing missing
+        assertThat(technicalRecord1.getPlates().get(0).getPlateIssuer()).isEqualTo(plate.getPlateIssuer()); // todo Plates missing
+        assertThat(technicalRecord1.getPlates().get(0).getPlateIssueDate()).isEqualTo(plate.getPlateIssueDate());
+        assertThat(technicalRecord1.getPlates().get(0).getPlateSerialNumber()).isEqualTo(plate.getPlateSerialNumber());
+        assertThat(technicalRecord1.getPlates().get(0).getPlateReasonForIssue()).isEqualTo(plate.getPlateReasonForIssue()); // todo Plates missing
 
         System.out.println(vehicle);
 
