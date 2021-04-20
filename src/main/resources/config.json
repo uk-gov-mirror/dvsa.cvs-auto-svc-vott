@@ -1,33 +1,33 @@
 {
   "databaseProperties": {
-    "engine": "mysql",
-    "host": "cvs-data-migration-staging-db-cluster-nonprod.cibmebkudson.eu-west-1.rds.amazonaws.com",
-    "port": 3306,
-    "username": "whitehouser",
-    "password": "password123",
-    "databaseName": "CVSNOPCVSB19155",
+    "engine": "",
+    "host": "",
+    "port": "",
+    "username": "",
+    "password": "",
+    "databaseName": "",
     "databaseClusterIdentifier": ""
   },
   "oAuthProperties": {
     "implicit": {
-      "grantType": "password",
-      "clientId": "11be8c44-22f5-43bf-b9bb-50467a26cfa7",
-      "username": "cvs.automation1@dvsagov.onmicrosoft.com",
-      "password": "Z4RA5aUmTkQHUXve2VJLT",
-      "resource": "11be8c44-22f5-43bf-b9bb-50467a26cfa7"
+      "grantType": "",
+      "clientId": "",
+      "username": "",
+      "password": "",
+      "resource": ""
     },
     "clientCredentials": {
-      "grantType": "client_credentials",
-      "clientId": "8b897993-7cb9-48f2-a66f-5cb6092d2d8",
-      "scope": "https://dev.vta.dvsatest-cloud.uk/.default",
-      "clientSecret": "N7sUgK32Jz33x0yAi~tw7dhl~~-2GZza0C"
+      "grantType": "",
+      "clientId": "",
+      "scope": "",
+      "clientSecret": ""
     }
   },
   "apiProperties": {
-    "baseUrl": "https://api.develop.cvs.dvsacloud.uk",
-    "branch": "cvsb-19222"
+    "baseUrl": "",
+    "branch": ""
   },
   "apiKeys": {
-    "enquiryService": "YTRasdsadADSDEQ01asdasdasbd67845FDGGDGvww-cvsb-19222"
+    "enquiryService": ""
   }
 }

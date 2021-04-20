@@ -11,7 +11,6 @@ import vott.auth.GrantType;
 import vott.auth.OAuthVersion;
 import vott.auth.TokenService;
 import vott.config.VottConfiguration;
-import vott.config.VottConfiguration;
 import vott.database.*;
 import vott.database.connection.ConnectionFactory;
 import vott.models.dao.*;
@@ -133,8 +132,6 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
                 then().//log().all().
                         statusCode(200).
                         extract().response().asString();
-
-        System.out.println(response);
 
         Gson gson = new GsonBuilder().create();
 
@@ -628,7 +625,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //verification
         then().//log().all().
             statusCode(404).
-            body(equalTo("NoSuchKey"));
+            body(equalTo("Vehicle was not found"));
     }
 
     @Title("CVSB-19222 - AC1 - TC9 - RetrieveVehicleDataAndTestHistoryVinNumberDoesntExistTest")
@@ -649,7 +646,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //verification
         then().//log().all().
             statusCode(404).
-            body(equalTo("NoSuchKey"));
+            body(equalTo("Vehicle was not found"));
     }
 
     @Title("CVSB-19222 - AC1 - TC10 - RetrieveVehicleDataAndTestHistoryNonPrintableCharsParamsTest")
@@ -677,8 +674,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
         tr.setVehicleID("1");
         tr.setRecordCompleteness("Complete");
-        tr.setCreatedAt("2021-01-01 00:00:00");
-        tr.setLastUpdatedAt("2021-01-01 00:00:00");
+        tr.setCreatedAt("2021-01-01 00:00:00.000000");
+        tr.setLastUpdatedAt("2021-01-01 00:00:00.000000");
         tr.setMakeModelID("1");
         tr.setFunctionCode("A");
         tr.setOffRoad("1");
@@ -735,16 +732,16 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         tr.setLength("100");
         tr.setHeight("50");
         tr.setWidth("50");
-        tr.setFrontAxleTo5thWheelCouplingMin("55");
-        tr.setFrontAxleTo5thWheelCouplingMax("65");
+        tr.setFrontAxleTo5thWheelMin("55");
+        tr.setFrontAxleTo5thWheelMax("65");
         tr.setFrontAxleTo5thWheelCouplingMin("45");
         tr.setFrontAxleTo5thWheelCouplingMax("65");
         tr.setFrontAxleToRearAxle("15");
         tr.setRearAxleToRearTrl("25");
-        tr.setCouplingCenterToRearAxleMin("25");
-        tr.setCouplingCenterToRearAxleMax("85");
-        tr.setCouplingCenterToRearAxleMin("25");
-        tr.setCouplingCenterToRearAxleMax("85");
+        tr.setCouplingCenterToRearAxleMin("10");
+        tr.setCouplingCenterToRearAxleMax("20");
+        tr.setCouplingCenterToRearTrlMin("5");
+        tr.setCouplingCenterToRearTrlMax("15");
         tr.setCentreOfRearmostAxleToRearOfTrl("25");
         tr.setNotes("Test Notes");
         tr.setPurchaserNotes("Purchaser Notes");
@@ -832,7 +829,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         axles.setTechnicalRecordID("1");
         axles.setTyreID("1");
         axles.setAxleNumber("222");
-        axles.setParkingBrakeMrk("5");
+        axles.setParkingBrakeMrk("1");
         axles.setKerbWeight("1200");
         axles.setLadenWeight("1500");
         axles.setGbWeight("1200");
@@ -840,7 +837,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         axles.setDesignWeight("1200");
         axles.setBrakeActuator("10");
         axles.setLeverLength("10");
-        axles.setSpringBrakeParking("123");
+        axles.setSpringBrakeParking("1");
 
         return axles;
     }
