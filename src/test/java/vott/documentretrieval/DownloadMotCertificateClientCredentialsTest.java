@@ -1,6 +1,7 @@
 package vott.documentretrieval;
 
 import io.restassured.RestAssured;
+import net.thucydides.core.annotations.Title;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static vott.e2e.RestAssuredAuthenticated.givenAuth;
 
-public class DownloadMotCertificateClientCredentials {
+public class DownloadMotCertificateClientCredentialsTest {
 
     // Variable + Constant Test Data Setup
     private VottConfiguration configuration = VottConfiguration.local();
@@ -81,7 +82,7 @@ public class DownloadMotCertificateClientCredentials {
         validVINNumber = vehicle.getVin();
         validTestNumber= tr.getTestNumber();
 
-        this.token = new TokenService(OAuthVersion.V1, GrantType.IMPLICIT).getBearerToken();
+        this.token = new TokenService(OAuthVersion.V1, GrantType.CLIENT_CREDENTIALS).getBearerToken();
         RestAssured.baseURI = configuration.getApiProperties().getBranchSpecificUrl() + "/v1/document-retrieval";
     }
 
@@ -98,6 +99,7 @@ public class DownloadMotCertificateClientCredentials {
         }
     }
 
+    @Title("CVSB-19156 - AC2 - TC1 - Happy Path - DownloadTestCertificateTest")
     @Test
     public void DownloadTestCertificateTest() {
 
@@ -139,11 +141,12 @@ public class DownloadMotCertificateClientCredentials {
             } catch (FileNotFoundException ex) {
                 System.out.println("File not found" + ex.getMessage());
             } catch (IOException ex) {
-                System.out.println("No application registered for PDFs" + ex.getMessage());
+                System.out.println("No apps installed to open PDFs" + ex.getMessage());
             }
         }
     }
 
+    @Title("CVSB-19156 - AC2 - TC2 - DownloadTestCertificateBadJwtTokenTest")
     @Test
     public void DownloadTestCertificateBadJwtTokenTest() {
 
@@ -165,6 +168,7 @@ public class DownloadMotCertificateClientCredentials {
                 body("message", equalTo("User is not authorized to access this resource with an explicit deny"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC3 - DownloadTestCertificateNoJwtTokenTest")
     @Test
     public void DownloadTestCertificateNoJwtTokenTest() {
 
@@ -185,6 +189,7 @@ public class DownloadMotCertificateClientCredentials {
                 body("message", equalTo("Unauthorized"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC4 - DownloadTestCertificateNoVinNumberTest")
     @Test
     public void DownloadTestCertificateNoVinNumberTest() {
 
@@ -204,6 +209,7 @@ public class DownloadMotCertificateClientCredentials {
                 statusCode(400);
     }
 
+    @Title("CVSB-19156 - AC2 - TC5 - DownloadTestCertificateNoTestNumberTest")
     @Test
     public void DownloadTestCertificateNoTestNumberTest() {
 
@@ -223,6 +229,7 @@ public class DownloadMotCertificateClientCredentials {
                 statusCode(400);
     }
 
+    @Title("CVSB-19156 - AC2 - TC6 - DownloadTestCertificateNoAPIKeyTest")
     @Test
     public void DownloadTestCertificateNoAPIKeyTest() {
 
@@ -244,6 +251,7 @@ public class DownloadMotCertificateClientCredentials {
                 body("message", equalTo("Forbidden"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC7 - DownloadTestCertificateInvalidAPIKeyTest")
     @Test
     public void DownloadTestCertificateInvalidAPIKeyTest() {
 
@@ -265,6 +273,7 @@ public class DownloadMotCertificateClientCredentials {
                 body("message", equalTo("Forbidden"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC8 - DownloadTestCertificateTestNumberDoesntExistTest")
     @Test
     public void DownloadTestCertificateTestNumberDoesntExistTest() {
 
@@ -286,6 +295,7 @@ public class DownloadMotCertificateClientCredentials {
                 body(equalTo("NoSuchKey"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC9 - DownloadTestCertificateNumericTestNumberTest")
     @Test
     public void DownloadTestCertificateNumericTestNumberTest() {
 
@@ -307,6 +317,7 @@ public class DownloadMotCertificateClientCredentials {
                 body(equalTo("Test number is in incorrect format"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC10 - DownloadTestCertificateVinNumberDoesntExistTest")
     @Test
     public void DownloadTestCertificateVinNumberDoesntExistTest() {
 
@@ -328,6 +339,7 @@ public class DownloadMotCertificateClientCredentials {
                 body(equalTo("NoSuchKey"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC11 - DownloadTestCertificateNumericVINNumberTest")
     @Test
     public void DownloadTestCertificateNumericVINNumberTest() {
 
@@ -349,6 +361,7 @@ public class DownloadMotCertificateClientCredentials {
                 body(equalTo("NoSuchKey"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC12 - DownloadTestCertificateVinNumberSpecialCharsTest")
     @Test
     public void DownloadTestCertificateVinNumberSpecialCharsTest() {
 
@@ -370,6 +383,7 @@ public class DownloadMotCertificateClientCredentials {
                 body(equalTo("VIN is in incorrect format"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC13 - DownloadTestCertificateTestNumberSpecialCharsTest")
     @Test
     public void DownloadTestCertificateTestNumberSpecialCharsTest() {
 
@@ -391,6 +405,7 @@ public class DownloadMotCertificateClientCredentials {
                 body(equalTo("Test number is in incorrect format"));
     }
 
+    @Title("CVSB-19156 - AC2 - TC14 - DownloadTestCertificatePostRequestTest")
     @Test
     public void DownloadTestCertificatePostRequestTest() {
 
@@ -410,6 +425,7 @@ public class DownloadMotCertificateClientCredentials {
                 statusCode(405);
     }
 
+    @Title("CVSB-19156 - AC2 - TC15 - DownloadTestCertificatePutRequestTest")
     @Test
     public void DownloadTestCertificatePutRequestTest() {
 
@@ -429,6 +445,7 @@ public class DownloadMotCertificateClientCredentials {
                 statusCode(405);
     }
 
+    @Title("CVSB-19156 - AC2 - TC16 - DownloadTestCertificatePatchRequestTest")
     @Test
     public void DownloadTestCertificatePatchRequestTest() {
 
@@ -448,6 +465,7 @@ public class DownloadMotCertificateClientCredentials {
                 statusCode(405);
     }
 
+    @Title("CVSB-19156 - AC2 - TC17 - DownloadTestCertificateDeleteRequestTest")
     @Test
     public void DownloadTestCertificateDeleteRequestTest() {
 
