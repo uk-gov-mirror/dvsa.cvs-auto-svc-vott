@@ -12,6 +12,7 @@ import vott.auth.TokenService;
 import vott.config.VottConfiguration;
 import vott.database.*;
 import vott.database.connection.ConnectionFactory;
+import vott.json.GsonInstance;
 import vott.models.dao.*;
 import vott.models.dto.enquiry.TechnicalRecord;
 import vott.models.dto.enquiry.Vehicle;
@@ -130,13 +131,12 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
                         statusCode(200).
                         extract().response().asString();
 
-        Gson gson = new GsonBuilder().create();
+        Gson gson = GsonInstance.get();
 
         Vehicle vehicle = gson.fromJson(response, Vehicle.class);
 
+        System.out.println(response);
         System.out.println(vehicle);
-
-        System.out.println(tr);
 
         TechnicalRecord technicalRecord1 = vehicle.getTechnicalrecords().get(0);
 
@@ -250,12 +250,12 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getPsvBrakes().get(0).getServiceBrakeForceB()).isEqualTo(Integer.parseInt(psv.getServiceBrakeForceB()));
         assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceA()).isEqualTo(Integer.parseInt(psv.getSecondaryBrakeForceA()));
         assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceB()).isEqualTo(Integer.parseInt(psv.getSecondaryBrakeForceB()));
-        //assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getTyreCode()).isEqualTo(tyre.getTyreCode()); // todo not reaching the correct nested field
-        //assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getTyreSize()).isEqualTo(tyre.getTyreSize());
-        //assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getPlyRating()).isEqualTo(tyre.getPlyRating());
-        //assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getDataTrAxles()).isEqualTo(tyre.getDataTrAxles());
-        //assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getFitmentCode()).isEqualTo(tyre.getFitmentCode());
-        //assertThat(technicalRecord1.getAxles().get(0).getTyres().get(0).getSpeedCategorySymbol()).isEqualTo(tyre.getSpeedCategorySymbol()); // todo end
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getTyreCode()).isEqualTo(Integer.parseInt(tyre.getTyreCode())); // todo not reaching the correct nested field
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getTyreSize()).isEqualTo(tyre.getTyreSize());
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getPlyRating()).isEqualTo(tyre.getPlyRating());
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getDataTrAxles()).isEqualTo(tyre.getDataTrAxles());
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getFitmentCode()).isEqualTo(tyre.getFitmentCode());
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getSpeedCategorySymbol()).isEqualTo(tyre.getSpeedCategorySymbol()); // todo end
         assertThat(technicalRecord1.getAxles().get(0).getGbWeight()).isEqualTo(axles.getGbWeight());
         assertThat(technicalRecord1.getAxles().get(0).getEecWeight()).isEqualTo(axles.getEecWeight());
         assertThat(technicalRecord1.getAxles().get(0).getAxleNumber()).isEqualTo(axles.getAxleNumber());

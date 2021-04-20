@@ -75,8 +75,8 @@ public class Axles {
   @SerializedName("springBrakeParking")
   private Boolean springBrakeParking = null;
 
-  @SerializedName("tyres")
-  private List<Tyre> tyres = null;
+  @SerializedName("tyre")
+  private Tyre tyre = null;
 
   public Axles axleNumber(BigDecimal axleNumber) {
     this.axleNumber = axleNumber;
@@ -351,29 +351,21 @@ public class Axles {
     this.springBrakeParking = springBrakeParking;
   }
 
-  public Axles tyres(List<Tyre> tyres) {
-    this.tyres = tyres;
-    return this;
-  }
-
-  public Axles addTyresItem(Tyre tyresItem) {
-    if (this.tyres == null) {
-      this.tyres = new ArrayList<Tyre>();
-    }
-    this.tyres.add(tyresItem);
+  public Axles tyre(Tyre tyre) {
+    this.tyre = tyre;
     return this;
   }
 
    /**
-   * Get tyres
-   * @return tyres
+   * Get tyre
+   * @return tyre
   **/
-  public List<Tyre> getTyres() {
-    return tyres;
+  public Tyre getTyre() {
+    return tyre;
   }
 
-  public void setTyres(List<Tyre> tyres) {
-    this.tyres = tyres;
+  public void setTyre(Tyre tyre) {
+    this.tyre = tyre;
   }
 
 
@@ -402,12 +394,12 @@ public class Axles {
         Objects.equals(this.brakeActuator, axles.brakeActuator) &&
         Objects.equals(this.leverLength, axles.leverLength) &&
         Objects.equals(this.springBrakeParking, axles.springBrakeParking) &&
-        Objects.equals(this.tyres, axles.tyres);
+        Objects.equals(this.tyre, axles.tyre);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(axleNumber, parkingBrakeMrk, kerbWeight, ladenWeight, gbWeight, eecWeight, designWeight, tyreSize, plyRating, fitmentCode, dataTrAxles, speedCategorySymbol, tyreCode, brakeActuator, leverLength, springBrakeParking, tyres);
+    return Objects.hash(axleNumber, parkingBrakeMrk, kerbWeight, ladenWeight, gbWeight, eecWeight, designWeight, tyreSize, plyRating, fitmentCode, dataTrAxles, speedCategorySymbol, tyreCode, brakeActuator, leverLength, springBrakeParking, tyre);
   }
 
 
@@ -432,7 +424,7 @@ public class Axles {
     sb.append("    brakeActuator: ").append(toIndentedString(brakeActuator)).append("\n");
     sb.append("    leverLength: ").append(toIndentedString(leverLength)).append("\n");
     sb.append("    springBrakeParking: ").append(toIndentedString(springBrakeParking)).append("\n");
-    sb.append("    tyres: ").append(toIndentedString(tyres)).append("\n");
+    sb.append("    tyre: ").append(toIndentedString(tyre)).append("\n");
     sb.append("}");
     return sb.toString();
   }
