@@ -31,7 +31,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     private  String validVINNumber = "";
     private final String validVehicleRegMark = "AB15XYZ";
 
-    private final String invalidVINNumber = "T12765431";
+    private final String invalidVINNumber = "A123456789";
     private final String invalidVehicleRegMark = "W01A00229";
 
     private VehicleRepository vehicleRepository;
@@ -229,10 +229,10 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getFrontAxleTo5thWheelMax()).isEqualTo(Integer.parseInt(tr.getFrontAxleTo5thWheelMax()));
         assertThat(technicalRecord1.getFrontAxleTo5thWheelMin()).isEqualTo(Integer.parseInt(tr.getFrontAxleTo5thWheelMin()));
         assertThat(technicalRecord1.isDepartmentalVehicleMarker()).isEqualTo(true);
-//        assertThat(technicalRecord1.getCouplingCentreToRearTrlMax()).isEqualTo(tr.getCouplingCenterToRearTrlMax());
-//        assertThat(technicalRecord1.getCouplingCentreToRearTrlMin()).isEqualTo(tr.getCouplingCenterToRearTrlMin());
-//        assertThat(technicalRecord1.getCouplingCentreToRearAxleMax()).isEqualTo(tr.getCouplingCenterToRearAxleMax());
-//        assertThat(technicalRecord1.getCouplingCentreToRearAxleMin()).isEqualTo(tr.getCouplingCenterToRearAxleMin());
+        assertThat(technicalRecord1.getCouplingCentreToRearTrlMax()).isEqualTo(tr.getCouplingCenterToRearTrlMax());
+        assertThat(technicalRecord1.getCouplingCentreToRearTrlMin()).isEqualTo(tr.getCouplingCenterToRearTrlMin());
+        assertThat(technicalRecord1.getCouplingCentreToRearAxleMax()).isEqualTo(tr.getCouplingCenterToRearAxleMax());
+        assertThat(technicalRecord1.getCouplingCentreToRearAxleMin()).isEqualTo(tr.getCouplingCenterToRearAxleMin());
         assertThat(technicalRecord1.getFrontAxleTo5thWheelCouplingMax()).isEqualTo(Integer.parseInt(tr.getFrontAxleTo5thWheelCouplingMax()));
         assertThat(technicalRecord1.getFrontAxleTo5thWheelCouplingMin()).isEqualTo(Integer.parseInt(tr.getFrontAxleTo5thWheelCouplingMin()));
         assertThat(technicalRecord1.getCentreOfRearmostAxleToRearOfTrl()).isEqualTo(Integer.parseInt(tr.getCentreOfRearmostAxleToRearOfTrl()));
@@ -250,12 +250,12 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         assertThat(technicalRecord1.getPsvBrakes().get(0).getServiceBrakeForceB()).isEqualTo(Integer.parseInt(psv.getServiceBrakeForceB()));
         assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceA()).isEqualTo(Integer.parseInt(psv.getSecondaryBrakeForceA()));
         assertThat(technicalRecord1.getPsvBrakes().get(0).getSecondaryBrakeForceB()).isEqualTo(Integer.parseInt(psv.getSecondaryBrakeForceB()));
-        assertThat(technicalRecord1.getAxles().get(0).getTyre().getTyreCode()).isEqualTo(Integer.parseInt(tyre.getTyreCode())); // todo not reaching the correct nested field
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getTyreCode()).isEqualTo(Integer.parseInt(tyre.getTyreCode()));
         assertThat(technicalRecord1.getAxles().get(0).getTyre().getTyreSize()).isEqualTo(tyre.getTyreSize());
         assertThat(technicalRecord1.getAxles().get(0).getTyre().getPlyRating()).isEqualTo(tyre.getPlyRating());
         assertThat(technicalRecord1.getAxles().get(0).getTyre().getDataTrAxles()).isEqualTo(tyre.getDataTrAxles());
         assertThat(technicalRecord1.getAxles().get(0).getTyre().getFitmentCode()).isEqualTo(tyre.getFitmentCode());
-        assertThat(technicalRecord1.getAxles().get(0).getTyre().getSpeedCategorySymbol()).isEqualTo(tyre.getSpeedCategorySymbol()); // todo end
+        assertThat(technicalRecord1.getAxles().get(0).getTyre().getSpeedCategorySymbol()).isEqualTo(tyre.getSpeedCategorySymbol());
         assertThat(technicalRecord1.getAxles().get(0).getGbWeight()).isEqualTo(axles.getGbWeight());
         assertThat(technicalRecord1.getAxles().get(0).getEecWeight()).isEqualTo(axles.getEecWeight());
         assertThat(technicalRecord1.getAxles().get(0).getAxleNumber()).isEqualTo(axles.getAxleNumber());
@@ -408,7 +408,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //prep request
         givenAuth(token, xApiKey)
             .header("content-type", "application/json")
-            .queryParam("VehicleRegMark", "AB15XYZ"). //todo send a vrm that doesn't exist in DB
+            .queryParam("VehicleRegMark", "AB15XYZ").
 
         //send request
         when().//log().all().
@@ -428,7 +428,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //prep request
         givenAuth(token, xApiKey)
             .header("content-type", "application/json")
-            .queryParam("vinNumber", invalidVINNumber). //todo send a vin that doesn't exist in DB
+            .queryParam("vinNumber", invalidVINNumber).
 
         //send request
         when().//log().all().
