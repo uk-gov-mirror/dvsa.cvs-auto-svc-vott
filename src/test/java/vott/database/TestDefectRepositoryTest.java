@@ -38,7 +38,7 @@ public class TestDefectRepositoryTest {
     }
 
     @Test
-    public void upsertingIdenticalDataReturnsNewPk() {
+    public void upsertingIdenticalDataSamePk() {
         int primaryKey1 = testDefectRepository.fullUpsert(newTestTestDefect());
         int primaryKey2 = testDefectRepository.fullUpsert(newTestTestDefect());
 
@@ -97,7 +97,7 @@ public class TestDefectRepositoryTest {
     }
 
     @Test
-    public void upsertingNewNonIndexDataReturnsDifferentPk() {
+    public void upsertingNewNonIndexDataSamePk() {
         TestDefect td1 = newTestTestDefect();
 
         TestDefect td2 = newTestTestDefect();
