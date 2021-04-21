@@ -257,17 +257,17 @@ public class TechnicalRecord {
   @SerializedName("rearAxleToRearTrl")
   private Integer rearAxleToRearTrl = null;
 
-  @SerializedName("couplingCentreToRearAxleMin")
-  private Integer couplingCentreToRearAxleMin = null;
+  @SerializedName("couplingCenterToRearAxleMin")
+  private Integer couplingCenterToRearAxleMin = null;
 
-  @SerializedName("couplingCentreToRearAxleMax")
-  private Integer couplingCentreToRearAxleMax = null;
+  @SerializedName("couplingCenterToRearAxleMax")
+  private Integer couplingCenterToRearAxleMax = null;
 
-  @SerializedName("couplingCentreToRearTrlMin")
-  private Integer couplingCentreToRearTrlMin = null;
+  @SerializedName("couplingCenterToRearTrlMin")
+  private Integer couplingCenterToRearTrlMin = null;
 
-  @SerializedName("couplingCentreToRearTrlMax")
-  private Integer couplingCentreToRearTrlMax = null;
+  @SerializedName("couplingCenterToRearTrlMax")
+  private Integer couplingCenterToRearTrlMax = null;
 
   @SerializedName("centreOfRearmostAxleToRearOfTrl")
   private Integer centreOfRearmostAxleToRearOfTrl = null;
@@ -1368,72 +1368,72 @@ public class TechnicalRecord {
     this.rearAxleToRearTrl = rearAxleToRearTrl;
   }
 
-  public TechnicalRecord couplingCentreToRearAxleMin(Integer couplingCentreToRearAxleMin) {
-    this.couplingCentreToRearAxleMin = couplingCentreToRearAxleMin;
+  public TechnicalRecord couplingCenterToRearAxleMin(Integer couplingCenterToRearAxleMin) {
+    this.couplingCenterToRearAxleMin = couplingCenterToRearAxleMin;
     return this;
   }
 
    /**
    * TRL
-   * @return couplingCentreToRearAxleMin
+   * @return couplingCenterToRearAxleMin
   **/
-  public Integer getCouplingCentreToRearAxleMin() {
-    return couplingCentreToRearAxleMin;
+  public Integer getCouplingCenterToRearAxleMin() {
+    return couplingCenterToRearAxleMin;
   }
 
-  public void setCouplingCentreToRearAxleMin(Integer couplingCentreToRearAxleMin) {
-    this.couplingCentreToRearAxleMin = couplingCentreToRearAxleMin;
+  public void setCouplingCenterToRearAxleMin(Integer couplingCenterToRearAxleMin) {
+    this.couplingCenterToRearAxleMin = couplingCenterToRearAxleMin;
   }
 
-  public TechnicalRecord couplingCentreToRearAxleMax(Integer couplingCentreToRearAxleMax) {
-    this.couplingCentreToRearAxleMax = couplingCentreToRearAxleMax;
+  public TechnicalRecord couplingCenterToRearAxleMax(Integer couplingCenterToRearAxleMax) {
+    this.couplingCenterToRearAxleMax = couplingCenterToRearAxleMax;
     return this;
   }
 
    /**
    * TRL
-   * @return couplingCentreToRearAxleMax
+   * @return couplingCenterToRearAxleMax
   **/
-  public Integer getCouplingCentreToRearAxleMax() {
-    return couplingCentreToRearAxleMax;
+  public Integer getCouplingCenterToRearAxleMax() {
+    return couplingCenterToRearAxleMax;
   }
 
-  public void setCouplingCentreToRearAxleMax(Integer couplingCentreToRearAxleMax) {
-    this.couplingCentreToRearAxleMax = couplingCentreToRearAxleMax;
+  public void setCouplingCenterToRearAxleMax(Integer couplingCenterToRearAxleMax) {
+    this.couplingCenterToRearAxleMax = couplingCenterToRearAxleMax;
   }
 
-  public TechnicalRecord couplingCentreToRearTrlMin(Integer couplingCentreToRearTrlMin) {
-    this.couplingCentreToRearTrlMin = couplingCentreToRearTrlMin;
+  public TechnicalRecord couplingCenterToRearTrlMin(Integer couplingCenterToRearTrlMin) {
+    this.couplingCenterToRearTrlMin = couplingCenterToRearTrlMin;
     return this;
   }
 
    /**
    * TRL
-   * @return couplingCentreToRearTrlMin
+   * @return couplingCenterToRearTrlMin
   **/
-  public Integer getCouplingCentreToRearTrlMin() {
-    return couplingCentreToRearTrlMin;
+  public Integer getCouplingCenterToRearTrlMin() {
+    return couplingCenterToRearTrlMin;
   }
 
-  public void setCouplingCentreToRearTrlMin(Integer couplingCentreToRearTrlMin) {
-    this.couplingCentreToRearTrlMin = couplingCentreToRearTrlMin;
+  public void setCouplingCenterToRearTrlMin(Integer couplingCenterToRearTrlMin) {
+    this.couplingCenterToRearTrlMin = couplingCenterToRearTrlMin;
   }
 
-  public TechnicalRecord couplingCentreToRearTrlMax(Integer couplingCentreToRearTrlMax) {
-    this.couplingCentreToRearTrlMax = couplingCentreToRearTrlMax;
+  public TechnicalRecord couplingCenterToRearTrlMax(Integer couplingCenterToRearTrlMax) {
+    this.couplingCenterToRearTrlMax = couplingCenterToRearTrlMax;
     return this;
   }
 
    /**
    * TRL
-   * @return couplingCentreToRearTrlMax
+   * @return couplingCenterToRearTrlMax
   **/
-  public Integer getCouplingCentreToRearTrlMax() {
-    return couplingCentreToRearTrlMax;
+  public Integer getCouplingCenterToRearTrlMax() {
+    return couplingCenterToRearTrlMax;
   }
 
-  public void setCouplingCentreToRearTrlMax(Integer couplingCentreToRearTrlMax) {
-    this.couplingCentreToRearTrlMax = couplingCentreToRearTrlMax;
+  public void setCouplingCenterToRearTrlMax(Integer couplingCenterToRearTrlMax) {
+    this.couplingCenterToRearTrlMax = couplingCenterToRearTrlMax;
   }
 
   public TechnicalRecord centreOfRearmostAxleToRearOfTrl(Integer centreOfRearmostAxleToRearOfTrl) {
@@ -1795,10 +1795,10 @@ public class TechnicalRecord {
         Objects.equals(this.frontAxleTo5thWheelCouplingMax, technicalRecord.frontAxleTo5thWheelCouplingMax) &&
         Objects.equals(this.frontAxleToRearAxle, technicalRecord.frontAxleToRearAxle) &&
         Objects.equals(this.rearAxleToRearTrl, technicalRecord.rearAxleToRearTrl) &&
-        Objects.equals(this.couplingCentreToRearAxleMin, technicalRecord.couplingCentreToRearAxleMin) &&
-        Objects.equals(this.couplingCentreToRearAxleMax, technicalRecord.couplingCentreToRearAxleMax) &&
-        Objects.equals(this.couplingCentreToRearTrlMin, technicalRecord.couplingCentreToRearTrlMin) &&
-        Objects.equals(this.couplingCentreToRearTrlMax, technicalRecord.couplingCentreToRearTrlMax) &&
+        Objects.equals(this.couplingCenterToRearAxleMin, technicalRecord.couplingCenterToRearAxleMin) &&
+        Objects.equals(this.couplingCenterToRearAxleMax, technicalRecord.couplingCenterToRearAxleMax) &&
+        Objects.equals(this.couplingCenterToRearTrlMin, technicalRecord.couplingCenterToRearTrlMin) &&
+        Objects.equals(this.couplingCenterToRearTrlMax, technicalRecord.couplingCenterToRearTrlMax) &&
         Objects.equals(this.centreOfRearmostAxleToRearOfTrl, technicalRecord.centreOfRearmostAxleToRearOfTrl) &&
         Objects.equals(this.notes, technicalRecord.notes) &&
         Objects.equals(this.purchaserNotes, technicalRecord.purchaserNotes) &&
@@ -1818,7 +1818,7 @@ public class TechnicalRecord {
 
   @Override
   public int hashCode() {
-    return Objects.hash(recordtype, createdAt, lastUpdatedAt, makeModel, functionCode, offRoad, numberOfWheelsDriven, emissionsLimit, departmentalVehicleMarker, alterationMarker, vehicleClass, variantVersionNumber, grossEecWeight, trainEecWeight, maxTrainEecWeight, manufactureYear, regnDate, firstUseDate, coifDate, ntaNumber, coifSerialNumber, coifCertifierName, approvalType, approvalTypeNumber, variantNumber, conversionRefNo, seatsLowerDeck, seatsUpperDeck, standingCapacity, speedRestriction, speedLimiterMrk, tachoExemptMrk, dispensations, remarks, reasonForCreation, statusCode, unladenWeight, grossKerbWeight, grossLadenWeight, grossGbWeight, grossDesignWeight, trainGbWeight, trainDesignWeight, maxTrainGbWeight, maxTrainDesignWeight, maxLoadOnCoupling, frameDescription, tyreUseCode, roadFriendly, drawbarCouplingFitted, euroStandard, suspensionType, couplingType, length, height, width, frontAxleTo5thWheelMin, frontAxleTo5thWheelMax, frontAxleTo5thWheelCouplingMin, frontAxleTo5thWheelCouplingMax, frontAxleToRearAxle, rearAxleToRearTrl, couplingCentreToRearAxleMin, couplingCentreToRearAxleMax, couplingCentreToRearTrlMin, couplingCentreToRearTrlMax, centreOfRearmostAxleToRearOfTrl, notes, purchaserNotes, manufacturerNotes, noOfAxles, brakeCode, numberOfSeatbelts, seatbeltInstallationApprovalDate, psvBrakes, axles, axlespacing, plates, dtpNumber, loadSensingValve, antilockBrakingSystem);
+    return Objects.hash(recordtype, createdAt, lastUpdatedAt, makeModel, functionCode, offRoad, numberOfWheelsDriven, emissionsLimit, departmentalVehicleMarker, alterationMarker, vehicleClass, variantVersionNumber, grossEecWeight, trainEecWeight, maxTrainEecWeight, manufactureYear, regnDate, firstUseDate, coifDate, ntaNumber, coifSerialNumber, coifCertifierName, approvalType, approvalTypeNumber, variantNumber, conversionRefNo, seatsLowerDeck, seatsUpperDeck, standingCapacity, speedRestriction, speedLimiterMrk, tachoExemptMrk, dispensations, remarks, reasonForCreation, statusCode, unladenWeight, grossKerbWeight, grossLadenWeight, grossGbWeight, grossDesignWeight, trainGbWeight, trainDesignWeight, maxTrainGbWeight, maxTrainDesignWeight, maxLoadOnCoupling, frameDescription, tyreUseCode, roadFriendly, drawbarCouplingFitted, euroStandard, suspensionType, couplingType, length, height, width, frontAxleTo5thWheelMin, frontAxleTo5thWheelMax, frontAxleTo5thWheelCouplingMin, frontAxleTo5thWheelCouplingMax, frontAxleToRearAxle, rearAxleToRearTrl, couplingCenterToRearAxleMin, couplingCenterToRearAxleMax, couplingCenterToRearTrlMin, couplingCenterToRearTrlMax, centreOfRearmostAxleToRearOfTrl, notes, purchaserNotes, manufacturerNotes, noOfAxles, brakeCode, numberOfSeatbelts, seatbeltInstallationApprovalDate, psvBrakes, axles, axlespacing, plates, dtpNumber, loadSensingValve, antilockBrakingSystem);
   }
 
 
@@ -1889,10 +1889,10 @@ public class TechnicalRecord {
     sb.append("    frontAxleTo5thWheelCouplingMax: ").append(toIndentedString(frontAxleTo5thWheelCouplingMax)).append("\n");
     sb.append("    frontAxleToRearAxle: ").append(toIndentedString(frontAxleToRearAxle)).append("\n");
     sb.append("    rearAxleToRearTrl: ").append(toIndentedString(rearAxleToRearTrl)).append("\n");
-    sb.append("    couplingCentreToRearAxleMin: ").append(toIndentedString(couplingCentreToRearAxleMin)).append("\n");
-    sb.append("    couplingCentreToRearAxleMax: ").append(toIndentedString(couplingCentreToRearAxleMax)).append("\n");
-    sb.append("    couplingCentreToRearTrlMin: ").append(toIndentedString(couplingCentreToRearTrlMin)).append("\n");
-    sb.append("    couplingCentreToRearTrlMax: ").append(toIndentedString(couplingCentreToRearTrlMax)).append("\n");
+    sb.append("    couplingCenterToRearAxleMin: ").append(toIndentedString(couplingCenterToRearAxleMin)).append("\n");
+    sb.append("    couplingCenterToRearAxleMax: ").append(toIndentedString(couplingCenterToRearAxleMax)).append("\n");
+    sb.append("    couplingCenterToRearTrlMin: ").append(toIndentedString(couplingCenterToRearTrlMin)).append("\n");
+    sb.append("    couplingCenterToRearTrlMax: ").append(toIndentedString(couplingCenterToRearTrlMax)).append("\n");
     sb.append("    centreOfRearmostAxleToRearOfTrl: ").append(toIndentedString(centreOfRearmostAxleToRearOfTrl)).append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    purchaserNotes: ").append(toIndentedString(purchaserNotes)).append("\n");
