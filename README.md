@@ -23,7 +23,7 @@ In order to run the test locally your will need to complete the following steps:
 
 !!Ensure only the template is committed to Git!!
 
-Running can be triggered from IntelliJ or via mvn command in the terminal
+Running can be triggered from IntelliJ
 
 ## Contributors
 -Robert Whitehouse @RobWhitehouseBJSS
