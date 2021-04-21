@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import lombok.SneakyThrows;
+import net.thucydides.core.annotations.Title;
 import org.junit.Before;
 import org.junit.Test;
 import org.testcontainers.shaded.com.google.common.reflect.TypeToken;
@@ -64,6 +65,7 @@ public class E2eTest {
         testResultRepository = new TestResultRepository(connectionFactory);
     }
 
+    @Title("VOTT-10 - AC1 - TC1 - e2eTestHgv")
     @Test
     public void e2eTestHgv() {
         TechRecordPOST hgvTechRecord = hgvTechRecord();
@@ -72,6 +74,7 @@ public class E2eTest {
         e2eTest(hgvTechRecord, hgvTestResult);
     }
 
+    @Title("VOTT-10 - AC1 - TC2 - e2eTestPsv")
     @Test
     public void e2eTestPsv() {
         TechRecordPOST psvTechRecord = psvTechRecord();
@@ -80,6 +83,7 @@ public class E2eTest {
         e2eTest(psvTechRecord, psvTestResult);
     }
 
+    @Title("VOTT-10 - AC1 - TC3 - e2eTestTrl")
     @Test
     public void e2eTestTrl() {
         TechRecordPOST trlTechRecord = trlTechRecord();
