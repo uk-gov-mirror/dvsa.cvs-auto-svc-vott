@@ -656,6 +656,9 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
     public void RetrieveVehicleDataAndTestHistoryNonPrintableCharsParamsTest() {
 
         System.out.println("Valid access token: " + token);
+
+        //TODO add control chars test i.e. ctrl+c etc.
+
         //prep request
         givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
