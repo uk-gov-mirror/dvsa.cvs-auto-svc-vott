@@ -48,8 +48,8 @@ public class DownloadMotCertificateUserAuthTest {
 
     private String validVINNumber = "";
     private String validTestNumber = "";
-    private String invalidVINNumber = "T12765431";
-    private String invalidTestNumber = "W01A00222";
+    private String invalidVINNumber = "T123456789";
+    private String invalidTestNumber = "A0A00000";
 
     @Before
     public void Setup() {

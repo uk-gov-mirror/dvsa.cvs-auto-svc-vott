@@ -6,6 +6,7 @@ import com.google.gson.GsonBuilder;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import net.thucydides.core.annotations.Title;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import vott.auth.GrantType;
@@ -18,6 +19,11 @@ import vott.database.connection.ConnectionFactory;
 import vott.models.dao.*;
 import vott.models.dto.enquiry.TechnicalRecord;
 import vott.models.dto.enquiry.Vehicle;
+import vott.database.VehicleRepository;
+import vott.database.connection.ConnectionFactory;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,10 +36,10 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
     private VottConfiguration configuration = VottConfiguration.local();
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
-    private  String validVINNumber = "";
-    private final String validVehicleRegMark = "AB15XYZ";
+    private String validVINNumber = "";
+    private final String validRegMark = "AB15XYZ";
 
-    private final String invalidVINNumber = "T12765431";
+    private String invalidVINNumber = "T123456789";
     private final String invalidVehicleRegMark = "W01A00229";
 
     private VehicleRepository vehicleRepository;
@@ -55,10 +61,29 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
     Tyre tyre = newTestTyre();
     Plate plate = newTestPlate();
     AxleSpacing as = newTestAxleSpacing();
+//    private VehicleRepository vehicleRepository;
+//    vott.models.dao.Vehicle vehicleUpsert = newTestVehicle();
+
+    private List<Integer> deleteOnExit;
 
     @Before
     public void Setup() {
-        RestAssured.baseURI = configuration.getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
+
+        //Connect to DB
+        ConnectionFactory connectionFactory = new ConnectionFactory(
+                VottConfiguration.local()
+        );
+
+        vehicleRepository = new VehicleRepository(connectionFactory);
+
+        //Upsert Vehicle
+        int vehicleID = vehicleRepository.fullUpsert(vehicleUpsert);
+        validVINNumber = vehicleUpsert.getVin();
+
+        deleteOnExit = new ArrayList<>();
+        deleteOnExit.add(vehicleID);
+
+        RestAssured.baseURI = VottConfiguration.local().getApiProperties().getBranchSpecificUrl() + "/v1/enquiry/vehicle";
         this.token = new TokenService(OAuthVersion.V2, GrantType.CLIENT_CREDENTIALS).getBearerToken();
 
         //Connect to DB
@@ -111,6 +136,13 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
         //Upsert Plate
         plate.setTechnicalRecordID(String.valueOf(trId));
         plateRepository.fullUpsert(plate);
+    }
+
+    @After
+    public void tearDown() {
+        for (int primaryKey : deleteOnExit) {
+            vehicleRepository.delete(primaryKey);
+        }
     }
 
     @Title ("CVSB-19222 - AC2 - TC1 - Happy Path - RetrieveVehicleDataAndTestHistoryUsingVinTest")
@@ -319,7 +351,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
         String response =
                 givenAuth(token, xApiKey)
                         .header("content-type", "application/json")
-                        .queryParam("VehicleRegMark", validVehicleRegMark).
+                        .queryParam("VehicleRegMark", validRegMark).
 
                         //send request
                                 when().//log().all().
@@ -513,7 +545,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
         //prep request
         givenAuth(token + 1, xApiKey)
                 .header("content-type", "application/json")
-                .queryParam("VehicleRegMark", validVehicleRegMark).
+                .queryParam("VehicleRegMark", validVINNumber).
 
                 //send request
                         when().//log().all().
@@ -555,7 +587,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
         givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
                 .queryParam("vinNumber", validVINNumber)
-                .queryParam("VehicleRegMark", validVehicleRegMark).
+                .queryParam("VehicleRegMark", validVINNumber).
 
                 //send request
                         when().//log().all().
@@ -657,12 +689,10 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
 
         System.out.println("Valid access token: " + token);
 
-        //TODO add control chars test i.e. ctrl+c etc.
-
         //prep request
         givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
-                .queryParam("VehicleRegMark", validVehicleRegMark). // todo create a var with non print chars and pass it as VehicleRegMark
+                .queryParam("VehicleRegMark", validRegMark). // todo create a var with non print chars and pass it as VehicleRegMark
 
                 //send request
                         when().//log().all().
