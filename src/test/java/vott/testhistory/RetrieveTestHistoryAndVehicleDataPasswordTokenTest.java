@@ -30,8 +30,9 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
     private VottConfiguration configuration = VottConfiguration.local();
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
-    private  String validVINNumber = "";
-    private final String validVehicleRegMark = "AB15XYZ";
+    private String validVINNumber = "";
+    private String validVehicleRegMark = "";
+    private String nonAlphaVehicleMark = "!@/'";
 
     private final String invalidVINNumber = "A123456789";
     private final String invalidVehicleRegMark = "W01A00229";
@@ -80,6 +81,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //Upsert Vehicle
         int vehicleID = vehicleRepository.fullUpsert(vehicleUpsert);
         validVINNumber = vehicleUpsert.getVin();
+        validVehicleRegMark = vehicleUpsert.getVrm_trm();
 
         //Upsert MakeModel
         int mmId = makeModelRepository.partialUpsert(mm);
@@ -591,7 +593,7 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
         //prep request
         givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
-                .queryParam("VehicleRegMark", validVehicleRegMark). // todo create a var with non print chars and pass it as VehicleRegMark
+                .queryParam("VehicleRegMark", nonAlphaVehicleMark).
 
                 //send request
                         when().//log().all().
@@ -599,8 +601,8 @@ public class RetrieveTestHistoryAndVehicleDataPasswordTokenTest {
 
                 //verification
                         then().//log().all().
-                statusCode(404).
-                body(equalTo("Vehicle was not found"));
+                statusCode(500).
+                body(equalTo("Vehicle identifier is invalid"));
     }
 
     private vott.models.dao.TechnicalRecord newTestTechnicalRecord() {

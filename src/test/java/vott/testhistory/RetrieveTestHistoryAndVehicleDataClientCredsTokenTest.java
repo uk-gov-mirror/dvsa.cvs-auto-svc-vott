@@ -38,10 +38,11 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
     private String token;
     private final String xApiKey = configuration.getApiKeys().getEnquiryServiceApiKey();
     private String validVINNumber = "";
-    private final String validRegMark = "AB15XYZ";
+    private  String validRegMark = "";
 
     private String invalidVINNumber = "T123456789";
     private final String invalidVehicleRegMark = "W01A00229";
+    private String nonAlphaVehicleMark = "!@/'";
 
     private VehicleRepository vehicleRepository;
     private TechnicalRecordRepository technicalRecordRepository;
@@ -87,6 +88,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
         //Upsert Vehicle
         int vehicleID = vehicleRepository.fullUpsert(vehicleUpsert);
         validVINNumber = vehicleUpsert.getVin();
+        validRegMark = vehicleUpsert.getVrm_trm();
 
         //Upsert MakeModel
         int mmId = makeModelRepository.partialUpsert(mm);
@@ -600,7 +602,7 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
         //prep request
         givenAuth(token, xApiKey)
                 .header("content-type", "application/json")
-                .queryParam("VehicleRegMark", validRegMark). // todo create a var with non print chars and pass it as VehicleRegMark
+                .queryParam("VehicleRegMark", nonAlphaVehicleMark). // todo create a var with non print chars and pass it as VehicleRegMark
 
                 //send request
                         when().//log().all().
@@ -608,8 +610,8 @@ public class RetrieveTestHistoryAndVehicleDataClientCredsTokenTest {
 
                 //verification
                         then().//log().all().
-                statusCode(404).
-                body(equalTo("NoSuchKey"));
+                statusCode(500).
+                body(equalTo("Vehicle identifier is invalid"));
     }
 
     private vott.models.dao.TechnicalRecord newTestTechnicalRecord() {

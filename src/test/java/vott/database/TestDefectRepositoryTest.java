@@ -10,6 +10,7 @@ import vott.models.dao.TestDefect;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
 public class TestDefectRepositoryTest {
@@ -44,7 +45,7 @@ public class TestDefectRepositoryTest {
         deleteOnExit.add(primaryKey1);
         deleteOnExit.add(primaryKey2);
 
-        assertNotEquals(primaryKey1, primaryKey2);
+        assertEquals(primaryKey1, primaryKey2);
     }
 
     @Test
@@ -108,7 +109,7 @@ public class TestDefectRepositoryTest {
         deleteOnExit.add(primaryKey1);
         deleteOnExit.add(primaryKey2);
 
-        assertNotEquals(primaryKey1, primaryKey2);
+        assertEquals(primaryKey1, primaryKey2);
     }
 
     private TestDefect newTestTestDefect() {
